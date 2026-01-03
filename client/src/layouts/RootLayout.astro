@@ -1,0 +1,47 @@
+---
+import "../styles/global.css";
+
+export interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title = "Homesick Highway", description = "Official band website" } =
+	Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>{title}</title>
+	</head>
+	<body class="p-5">
+		<div class="grid grid-cols-3 w-full min-h-24">
+			<div class="w-48 mx-auto rounded-full col-span-1 order-2">
+				<img
+					class="object-cover w-full h-full rounded-full"
+					src="images/logo_mark.png"
+				/>
+			</div>
+			<div class="col-span-1 flex items-center justify-end order-3">
+				<button class="btn btn-primary btn-lg"> Text us </button>
+			</div>
+			<div class="col-span-1 flex items-center justify-between order-1">
+				<nav
+					class="flex justify-end space-x-8 text-2xl items-center h-full"
+				>
+					<a href="/" class="hover:underline">Home</a>
+					<a href="/music" class="hover:underline">Music</a>
+					<a href="/tour" class="hover:underline">Merch</a>
+				</nav>
+			</div>
+		</div>
+		<main class="min-h-screen flex flex-col">
+			<slot />
+		</main>
+	</body>
+</html>
