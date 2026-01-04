@@ -11,36 +11,57 @@ const { title = "Homesick Highway", description = "Official band website" } =
 ---
 
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="retro">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Danfo&family=Sancreek&display=swap"
+			rel="stylesheet"
+		/>
 		<title>{title}</title>
 	</head>
-	<body class="p-5">
-		<div class="grid grid-cols-3 w-full min-h-24">
-			<div class="w-48 mx-auto rounded-full col-span-1 order-2">
-				<img
-					class="object-cover w-full h-full rounded-full"
-					src="images/logo_mark.png"
-				/>
-			</div>
-			<div class="col-span-1 flex items-center justify-end order-3">
-				<button class="btn btn-primary btn-lg"> Text us </button>
-			</div>
-			<div class="col-span-1 flex items-center justify-between order-1">
-				<nav
-					class="flex justify-end space-x-8 text-2xl items-center h-full"
-				>
-					<a href="/" class="hover:underline">Home</a>
-					<a href="/music" class="hover:underline">Music</a>
-					<a href="/tour" class="hover:underline">Merch</a>
+	<body class="relative">
+		<header
+			class="fixed top-0 left-0 z-10 w-full bg-white/20 backdrop-blur-sm text-black"
+		>
+			<div class="p-5 flex items-center justify-between">
+				<a href="/">
+					<h1
+						class="text-6xl font-semibold hover:text-white ease-linear transition-all"
+					>
+						HMSCK HWY
+					</h1>
+				</a>
+				<nav>
+					<ul class="flex gap-5 text-3xl font-semibold items-center">
+						<li class="hover:text-white transition-all ease-linear">
+							<a href="#music">MUSIC</a>
+						</li>
+						<li class="hover:text-white transition-all ease-linear">
+							<a href="#shows">SHOWS</a>
+						</li>
+						<li class="hover:text-white transition-all ease-linear">
+							<a href="/press">PRESS</a>
+						</li>
+						<li class="hover:text-white transition-all ease-linear">
+							<a href="#about">STORE</a>
+						</li>
+						<li>
+							<button
+								class="btn btn-xl btn-outline bg-black/50 rounded-full hover:bg-amber-500 transition-colors ease-linear"
+								>TEXT US</button
+							>
+						</li>
+					</ul>
 				</nav>
 			</div>
-		</div>
-		<main class="min-h-screen flex flex-col">
+		</header>
+		<main class="min-h-screen flex flex-col relative">
 			<slot />
 		</main>
 	</body>

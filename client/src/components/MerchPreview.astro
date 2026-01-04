@@ -1,0 +1,29 @@
+---
+import { placeholderMerch } from "../data/placeholder";
+
+const merchItems = placeholderMerch;
+---
+
+<div class="grid grid-cols-3 gap-5">
+	{
+		merchItems.map((item) => (
+			<div class="card w-full bg-base-100 shadow-xl">
+				<figure class="">
+					<img src={item.image} alt={item.name} class="w-full" />
+				</figure>
+				<div class="card-body">
+					<h2 class="card-title text-2xl font-bold font-family-chelsea">
+						{item.name}
+					</h2>
+					<p>{item.description}</p>
+					<p class="text-xl">${item.price}</p>
+					<div class="card-actions justify-end">
+						<button class="btn btn-primary font-family-sancreek">
+							Buy Now
+						</button>
+					</div>
+				</div>
+			</div>
+		))
+	}
+</div>

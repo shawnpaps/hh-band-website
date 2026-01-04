@@ -1,0 +1,58 @@
+---
+import RootLayout from "../layouts/RootLayout.astro";
+import FFOTicker from "../components/FFOTicker.astro";
+---
+
+<RootLayout>
+	<section class="lg:mt-24 mt-48 p-5 bg-black min-h-screen">
+		<article class="grid grid-cols-3 grid-rows-4 gap-4 w-full h-screen">
+			<div class="col-span-1 row-span-4 bg-white/10 relative">
+				<div class="w-48 h-48 rounded-full absolute top-0 left-0">
+					<img
+						class="w-full h-full object-cover rounded-full"
+						src="images/logo_mark.png"
+					/>
+				</div>
+				<div class="w-full h-full">
+					<img
+						class="w-full h-full object-cover"
+						src="images/band_shot.jpg"
+					/>
+				</div>
+			</div>
+			<div class="col-span-2 row-span-1 text-center">
+				<h2 class="font-extralight tracking-tight text-6xl text-white">
+					From a truck stop near Tampa...
+				</h2>
+			</div>
+
+			<div class="col-span-2 row-span-1 text-right text-white">
+				<div
+					class="max-w-md ml-auto text-xl font-light leading-8 gap-4 flex flex-col"
+				>
+					<p>
+						Homesick Highway is a band hailing from the Florida
+						swamps, blending styles of their hardcore/metalcore
+						roots and their love of country music to create a unique
+						sound of their own.
+					</p>
+					<p>
+						The band strives to push the music industry through
+						their southern riffs, catchy choruses, hard-hitting
+						breakdowns, meaningful lyrics, and a rebellious sense of
+						fun.
+					</p>
+					<p>
+						Their debut single "Lucid Vision" is high energy call to
+						the listener to shoot their shot and take the risk to
+						live a life that they want to live. Become want you're
+						meant to be.
+					</p>
+				</div>
+			</div>
+		</article>
+		<section>
+			<FFOTicker />
+		</section>
+	</section>
+</RootLayout>

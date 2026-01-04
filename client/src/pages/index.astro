@@ -1,27 +1,56 @@
 ---
+import Hero from "../components/Hero.astro";
 import RootLayout from "../layouts/RootLayout.astro";
+import MerchPreview from "../components/MerchPreview.astro";
 ---
 
 <RootLayout
 	title="Homesick Highway - Official Band Website"
 	description="Rock band from the heart of America. Check out our latest music, upcoming shows, and more."
 >
-	<section>
-		<h1 class="text-5xl font-bold text-center my-10">
-			Welcome to Homesick Highway
-		</h1>
-		<p class="text-center text-xl max-w-3xl mx-auto">
-			Discover the soulful sounds of Homesick Highway, a rock band that
-			captures the essence of Americana through their heartfelt lyrics and
-			captivating melodies. Explore our latest music, upcoming shows, and
-			merchandise right here on our official website.
+	<Hero />
+	<section class="my-32 flex-col" id="new-release">
+		<div class="flex items-center p-5 justify-between">
+			<div>
+				<img
+					src="images/lucidvision_placeholder.png"
+					alt="Lucid Vision Album Cover"
+					class="w-96 rounded-lg shadow-lg"
+				/>
+			</div>
+			<div class="text-right flex flex-col gap-4 h-full justify-between">
+				<div>
+					<h2 class="text-9xl font-bold font-family-danfo">
+						Lucid <span class="italic font-light">Vision</span>
+					</h2>
+					<h3 class="italic text-5xl font-family-chelsea">
+						02.14.2026
+					</h3>
+				</div>
+				<div class="">
+					<button
+						class="btn btn-outline w-full btn-accent btn-xl font-family-chelsea"
+						>Presave Now</button
+					>
+				</div>
+			</div>
+		</div>
+		<p class="italic font-light text-5xl">
+			The Debut Single from Homesick Highway
 		</p>
 	</section>
-	<section class="h-screen z-10">
-		<div class="grid grid-cols-4 grid-rows-4 min-h-[30em] gap-4">
-			<div class="glass col-span-2 row-span-4 rounded-xl">some text</div>
-			<div class="glass col-span-2 row-span-2 rounded-xl">some text</div>
-			<div class="glass col-span-2 row-span-2 rounded-xl">some text</div>
+	{/* Store Preview Section */}
+	<section id="store-preview">
+		<div class="p-5">
+			<div class="mb-5">
+				<h2 class="text-8xl font-bold font-family-sancreek">
+					From the Truck Stop
+				</h2>
+				<h3 class="italic font-light font-family-chelsea">
+					Pick up some merch and get back on the road.
+				</h3>
+			</div>
+			<MerchPreview />
 		</div>
 	</section>
 </RootLayout>

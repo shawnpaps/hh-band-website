@@ -2,3 +2,9 @@
 @plugin "daisyui" {
 	themes: "all";
 }
+
+@theme {
+	--font-family-chelsea: "Chelsea Market", cursive;
+	--font-family-danfo: "Danfo", serif;
+	--font-family-sancreek: "Sancreek", serif;
+}
