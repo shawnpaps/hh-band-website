@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import SubscribeModal from "../components/SubscribeModal.astro";
+import LucidVisionPlayer from "../components/LucidVisionPlayer.astro";
 
 export interface Props {
 	title?: string;
@@ -43,7 +45,7 @@ const { title = "Homesick Highway", description = "Official band website" } =
 							<a href="#music">MUSIC</a>
 						</li>
 						<li class="hover:text-white transition-all ease-linear">
-							<a href="#shows">SHOWS</a>
+							<a href="/shows">SHOWS</a>
 						</li>
 						<li class="hover:text-white transition-all ease-linear">
 							<a href="/press">PRESS</a>
@@ -64,5 +66,7 @@ const { title = "Homesick Highway", description = "Official band website" } =
 		<main class="min-h-screen flex flex-col relative">
 			<slot />
 		</main>
+		<LucidVisionPlayer />
+		<SubscribeModal delay={3000} />
 	</body>
 </html>

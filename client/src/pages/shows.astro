@@ -1,0 +1,75 @@
+---
+import RootLayout from "../layouts/RootLayout.astro";
+import EmailListSubscribe from "../components/EmailListSubscribe.astro";
+---
+
+<RootLayout
+	title="Homesick Highway — Shows"
+	description="See when Homesick Highway is rolling through your town."
+>
+	<section
+		id="shows"
+		class="min-h-screen pt-40 pb-24 px-6 md:px-10 bg-gradient-to-b from-base-200/40 via-base-200/10 to-base-300/40 flex flex-col gap-16"
+	>
+		<div class="max-w-4xl">
+			<p
+				class="uppercase tracking-[0.3em] text-sm text-amber-500 font-semibold mb-3"
+			>
+				tour log
+			</p>
+			<h1 class="text-6xl md:text-8xl font-family-danfo leading-tight">
+				Shows
+			</h1>
+			<p class="text-xl md:text-2xl mt-6 text-base-content/80">
+				We're fine-tuning new stories from the highway and plotting the
+				next round of neon-lit pit stops. Check back soon for the drop —
+				the first folks on the list get the keys to latest show
+				announcements, exclusive merch drops, and new releases
+			</p>
+		</div>
+
+		<div class="grid gap-10 lg:grid-cols-2 items-start">
+			<div
+				class="card bg-base-100/90 border border-amber-500/30 shadow-2xl"
+			>
+				<div class="card-body gap-6">
+					<div>
+						<p
+							class="text-xs uppercase tracking-[0.4em] text-white/60"
+						>
+							detour ahead
+						</p>
+						<h2 class="text-4xl md:text-5xl font-family-sancreek">
+							Nothing to see here… yet.
+						</h2>
+					</div>
+					<p class="text-lg text-base-content/80">
+						The map is blank for a minute while we get the rig
+						running, add new songs to the set list, and plan a
+						proper stretch of shows. Drop your email and we'll hit
+						you up the second dates go live.
+					</p>
+					<div class="flex flex-wrap gap-4">
+						<a
+							class="btn btn-warning btn-outline rounded-full"
+							href="/music">Hear what we're building</a
+						>
+						<a
+							class="btn btn-secondary rounded-full"
+							href="sms:+1234567890">Text the crew</a
+						>
+					</div>
+				</div>
+			</div>
+
+			<div
+				class="bg-base-100/60 border border-dashed border-white/30 rounded-3xl p-8 backdrop-blur"
+			>
+				<p class="text-2xl font-family-chelsea mb-6 text-amber-400">
+					Pit stop: Mailing list
+				</p>
+				<EmailListSubscribe />
+			</div>
+		</div>
+	</section>
+</RootLayout>

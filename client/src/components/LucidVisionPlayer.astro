@@ -1,0 +1,120 @@
+---
+const trackUrl =
+	"https://hh-marketing-website.s3.us-east-2.amazonaws.com/docs/Lucid+Vision+Master.mp3";
+const trackTitle = "Lucid Vision";
+const artistName = "Homesick Highway";
+---
+
+<section
+	id="lucid-vision-player"
+	class="lucid-vision-player fixed bottom-4 left-1/2 z-50 w-[90%] max-w-lg -translate-x-1/2 rounded-3xl border border-black/10 bg-white/85 p-4 text-black shadow-2xl backdrop-blur-sm sm:left-auto sm:right-6 sm:translate-x-0"
+	role="complementary"
+	aria-label={`${trackTitle} Audio Player`}
+>
+	<div class="flex items-center gap-4">
+		<div class="flex-1">
+			<p class="text-xs uppercase tracking-[0.4em] text-black/60">
+				Now Playing
+			</p>
+			<p class="font-family-danfo text-2xl leading-tight">{trackTitle}</p>
+			<p class="text-sm text-black/70">{artistName}</p>
+			<p class="sr-only" data-lucid-vision-status aria-live="polite">
+				Paused
+			</p>
+		</div>
+		<button
+			type="button"
+			class="lucid-vision-toggle btn btn-circle btn-lg border-black/20 bg-black text-white"
+			data-lucid-vision-toggle
+			data-state="paused"
+			aria-pressed="false"
+		>
+			<span data-lucid-vision-icon aria-hidden="true">►</span>
+			<span class="sr-only" data-lucid-vision-label>Play</span>
+		</button>
+	</div>
+	<audio
+		id="lucid-vision-audio"
+		src={trackUrl}
+		preload="auto"
+		playsinline
+		controlsList="nodownload noplaybackrate"
+		aria-hidden="true"
+	>
+		Your browser does not support audio playback.
+	</audio>
+</section>
+
+<script type="module">
+	const container = document.getElementById("lucid-vision-player");
+
+	if (container) {
+		const audio = container.querySelector("#lucid-vision-audio");
+		const toggleBtn = container.querySelector("[data-lucid-vision-toggle]");
+		const statusEl = container.querySelector("[data-lucid-vision-status]");
+		const labelEl = container.querySelector("[data-lucid-vision-label]");
+		const iconEl = container.querySelector("[data-lucid-vision-icon]");
+
+		const setState = (state) => {
+			if (!toggleBtn || !statusEl || !labelEl || !iconEl) return;
+			toggleBtn.dataset.state = state;
+			toggleBtn.setAttribute(
+				"aria-pressed",
+				state === "playing" ? "true" : "false",
+			);
+			statusEl.textContent =
+				state === "playing" ? "Now playing" : "Paused";
+			labelEl.textContent = state === "playing" ? "Pause" : "Play";
+			iconEl.textContent = state === "playing" ? "❚❚" : "►";
+		};
+
+		toggleBtn?.addEventListener("click", () => {
+			if (!audio) return;
+			if (audio.paused) {
+				audio
+					.play()
+					.then(() => {
+						setState("playing");
+					})
+					.catch(() => {
+						setState("paused");
+					});
+			} else {
+				audio.pause();
+				setState("paused");
+			}
+		});
+
+		audio?.addEventListener("play", () => setState("playing"));
+		audio?.addEventListener("pause", () => setState("paused"));
+		audio?.addEventListener("ended", () => setState("paused"));
+
+		setState(audio && !audio.paused ? "playing" : "paused");
+	}
+</script>
+
+<style>
+	.lucid-vision-player {
+		font-family:
+			"Chelsea Market",
+			system-ui,
+			-apple-system,
+			BlinkMacSystemFont,
+			sans-serif;
+	}
+	.lucid-vision-player .lucid-vision-toggle[data-state="playing"] {
+		background-color: #f97316;
+		border-color: transparent;
+	}
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+</style>

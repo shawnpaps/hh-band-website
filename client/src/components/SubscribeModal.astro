@@ -1,0 +1,120 @@
+---
+interface Props {
+	delay?: number;
+}
+
+const { delay = 3000 } = Astro.props;
+---
+
+<div
+	id="subscribe-modal"
+	class="modal pointer-events-none opacity-0 transition-opacity duration-300 z-20"
+	data-delay={delay}
+	aria-hidden="true"
+>
+	<div class="modal-box max-w-lg text-center space-y-6">
+		<h2 class="text-4xl font-family-sancreek">Don't Miss Your Exit</h2>
+		<p class="font-family-chelsea">
+			Join the text + email list for first dibs on shows, drops, and
+			secret truck-stop sets.
+		</p>
+		<form class="space-y-4">
+			<input
+				type="email"
+				class="input input-bordered w-full bg-transparent"
+				placeholder="yourname@email.com"
+				required
+			/>
+			<button type="submit" class="btn btn-accent w-full rounded-full">
+				Get Updates
+			</button>
+		</form>
+		<button
+			type="button"
+			class="btn btn-ghost w-full rounded-full"
+			data-close-modal
+			data-dismiss-session="true"
+		>
+			Maybe later
+		</button>
+	</div>
+</div>
+
+<script is:inline>
+	(() => {
+		const modal = document.getElementById("subscribe-modal");
+		if (!modal) return;
+
+		const delay = Number(modal.dataset.delay || 3000);
+		const form = modal.querySelector("form");
+		const DISMISS_KEY = "hh-subscribe-dismissed";
+		const sessionStore = (() => {
+			try {
+				return window.sessionStorage;
+			} catch {
+				return null;
+			}
+		})();
+
+		if (sessionStore?.getItem(DISMISS_KEY) === "true") {
+			return;
+		}
+
+		let hasOpened = false;
+
+		const openModal = () => {
+			if (hasOpened) return;
+			hasOpened = true;
+			modal.classList.remove("pointer-events-none");
+			modal.classList.add(
+				"modal-open",
+				"pointer-events-auto",
+				"opacity-100",
+			);
+			modal.setAttribute("aria-hidden", "false");
+		};
+
+		const closeModal = (persist = false) => {
+			modal.classList.remove(
+				"modal-open",
+				"pointer-events-auto",
+				"opacity-100",
+			);
+			modal.classList.add("pointer-events-none");
+			modal.setAttribute("aria-hidden", "true");
+
+			if (persist) {
+				sessionStore?.setItem(DISMISS_KEY, "true");
+			}
+		};
+
+		setTimeout(openModal, delay);
+
+		modal.addEventListener("click", (event) => {
+			const target = event.target;
+			if (target === modal) {
+				closeModal();
+			} else if (
+				target instanceof HTMLElement &&
+				target.dataset.closeModal !== undefined
+			) {
+				const persist = target.dataset.dismissSession === "true";
+				closeModal(persist);
+			}
+		});
+
+		document.addEventListener("keydown", (event) => {
+			if (event.key === "Escape") {
+				closeModal();
+			}
+		});
+
+		if (form) {
+			form.addEventListener("submit", (event) => {
+				event.preventDefault();
+				form.reset();
+				closeModal();
+			});
+		}
+	})();
+</script>
