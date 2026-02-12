@@ -1,9 +1,9 @@
 import type { APIRoute } from "astro";
 import dotenv from "dotenv";
 
-dotenv.config();
-
 export const prerender = false;
+
+dotenv.config();
 
 export const POST: APIRoute = async ({ request }) => {
 	try {
