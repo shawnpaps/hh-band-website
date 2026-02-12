@@ -1,0 +1,202 @@
+---
+interface Props {
+	delay?: number;
+}
+
+const { delay = 3000 } = Astro.props;
+---
+
+<div
+	id="subscribe-modal"
+	class="modal pointer-events-none opacity-0 transition-opacity duration-300 z-20"
+	data-delay={delay}
+	aria-hidden="true"
+>
+	<div
+		class="modal-box max-w-lg text-center space-y-4 sm:space-y-6 p-4 sm:p-6 mx-4"
+	>
+		<h2 class="text-2xl sm:text-3xl md:text-4xl font-family-sancreek">
+			Don't Miss Your Exit
+		</h2>
+		<p class="font-family-chelsea text-sm sm:text-base">
+			Join the text + email list for first dibs on shows, drops, and
+			secret truck-stop sets.
+		</p>
+		<form id="modal-subscribe-form" class="space-y-4">
+			<input
+				type="email"
+				id="modal-email-input"
+				name="email"
+				class="input input-bordered w-full bg-transparent text-sm sm:text-base"
+				placeholder="yourname@email.com"
+				required
+			/>
+			<button
+				type="submit"
+				id="modal-subscribe-button"
+				class="btn btn-accent w-full rounded-full text-sm sm:text-base"
+			>
+				<span id="modal-button-text">Get Updates</span>
+				<span
+					id="modal-button-loading"
+					class="loading loading-spinner hidden"></span>
+			</button>
+			<div
+				id="modal-message"
+				class="text-center hidden text-sm font-family-chelsea"
+			>
+			</div>
+		</form>
+		<button
+			type="button"
+			class="btn btn-ghost w-full rounded-full text-sm sm:text-base"
+			data-close-modal
+			data-dismiss-session="true"
+		>
+			Maybe later
+		</button>
+	</div>
+</div>
+
+<script is:inline>
+	(() => {
+		const modal = document.getElementById("subscribe-modal");
+		if (!modal) return;
+
+		const delay = Number(modal.dataset.delay || 3000);
+		const form = document.getElementById("modal-subscribe-form");
+		const emailInput = document.getElementById("modal-email-input");
+		const submitButton = document.getElementById("modal-subscribe-button");
+		const buttonText = document.getElementById("modal-button-text");
+		const buttonLoading = document.getElementById("modal-button-loading");
+		const messageDiv = document.getElementById("modal-message");
+		const DISMISS_KEY = "hh-subscribe-dismissed";
+		const sessionStore = (() => {
+			try {
+				return window.sessionStorage;
+			} catch {
+				return null;
+			}
+		})();
+
+		if (sessionStore?.getItem(DISMISS_KEY) === "true") {
+			return;
+		}
+
+		let hasOpened = false;
+
+		const openModal = () => {
+			if (hasOpened) return;
+			hasOpened = true;
+			modal.classList.remove("pointer-events-none");
+			modal.classList.add(
+				"modal-open",
+				"pointer-events-auto",
+				"opacity-100",
+			);
+			modal.setAttribute("aria-hidden", "false");
+		};
+
+		const closeModal = (persist = false) => {
+			modal.classList.remove(
+				"modal-open",
+				"pointer-events-auto",
+				"opacity-100",
+			);
+			modal.classList.add("pointer-events-none");
+			modal.setAttribute("aria-hidden", "true");
+
+			if (persist) {
+				sessionStore?.setItem(DISMISS_KEY, "true");
+			}
+		};
+
+		setTimeout(openModal, delay);
+
+		modal.addEventListener("click", (event) => {
+			const target = event.target;
+			if (target === modal) {
+				closeModal();
+			} else if (
+				target instanceof HTMLElement &&
+				target.dataset.closeModal !== undefined
+			) {
+				const persist = target.dataset.dismissSession === "true";
+				closeModal(persist);
+			}
+		});
+
+		document.addEventListener("keydown", (event) => {
+			if (event.key === "Escape") {
+				closeModal();
+			}
+		});
+
+		if (form) {
+			form.addEventListener("submit", async (event) => {
+				event.preventDefault();
+
+				const email = emailInput.value.trim();
+
+				if (!email) {
+					showMessage("Please enter your email address", "error");
+					return;
+				}
+
+				// Disable form during submission
+				submitButton.disabled = true;
+				buttonText.classList.add("hidden");
+				buttonLoading.classList.remove("hidden");
+				messageDiv.classList.add("hidden");
+
+				try {
+					const response = await fetch("/api/subscribe", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify({ email }),
+					});
+
+					const data = await response.json();
+
+					if (response.ok) {
+						showMessage(
+							"🎉 Welcome to the Homesick Highway community!",
+							"success",
+						);
+						form.reset();
+						setTimeout(() => {
+							closeModal(true);
+						}, 2000);
+					} else {
+						showMessage(
+							data.error ||
+								"Something went wrong. Please try again.",
+							"error",
+						);
+					}
+				} catch (error) {
+					console.error("Subscription error:", error);
+					showMessage(
+						"Network error. Please check your connection and try again.",
+						"error",
+					);
+				} finally {
+					// Re-enable form
+					submitButton.disabled = false;
+					buttonText.classList.remove("hidden");
+					buttonLoading.classList.add("hidden");
+				}
+			});
+		}
+
+		function showMessage(message, type) {
+			messageDiv.textContent = message;
+			messageDiv.classList.remove("hidden", "text-success", "text-error");
+			messageDiv.classList.add(
+				type === "success" ? "text-success" : "text-error",
+			);
+		}
+	})();
+</script>
