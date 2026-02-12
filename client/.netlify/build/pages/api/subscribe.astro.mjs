@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
 export { renderers } from '../../renderers.mjs';
 
-dotenv.config();
 const prerender = false;
+dotenv.config();
 const POST = async ({ request }) => {
   try {
     const { email } = await request.json();

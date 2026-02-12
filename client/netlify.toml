@@ -1,0 +1,3 @@
+[build]
+  command = "pnpm astro build"
+  publish = "dist"
