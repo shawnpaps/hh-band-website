@@ -2,19 +2,113 @@
 
 ---
 
-<div class="max-w-lg">
-	<h2 class="text-5xl font-bold text-amber-500 font-family-chelsea">
-		Don't get stranded.
-	</h2>
-	<form>
-		<label for="email" class="block mb-2 text-xl font-light"
-			>Join the Highway for free updates on shows, merch, music, and more
-			straight to your inbox from Homesick Highway</label
-		>
-		<input
-			type="text"
-			class="input input-xl input-primary bg-transparent input-outline"
-		/>
-		<button class="btn btn-success btn-xl">Join</button>
-	</form>
+<div
+	class="mx-auto p-4 sm:p-8 md:p-12 lg:p-16 mt-4 bg-black-50 backdrop-blur-sm rounded-lg w-full max-w-2xl"
+>
 </div>
+<form
+	id="subscribe-form"
+	class="flex flex-col items-center gap-3 sm:gap-4 md:gap-5"
+>
+	<div class="w-full max-w-xl">
+		<input
+			type="email"
+			id="email-input"
+			name="email"
+			placeholder="your@email.com"
+			required
+			class="input input-lg md:input-xl font-family-chelsea input-primary bg-transparent input-outline w-full text-base md:text-lg"
+		/>
+	</div>
+	<button
+		type="submit"
+		id="subscribe-button"
+		class="btn btn-success btn-lg md:btn-xl block w-full max-w-xl text-base md:text-lg"
+	>
+		<span id="button-text">Join the community</span>
+		<span id="button-loading" class="loading loading-spinner hidden"></span>
+	</button>
+	<div
+		id="message"
+		class="text-center hidden text-sm sm:text-base md:text-lg font-family-chelsea"
+	>
+	</div>
+</form>
+
+<script>
+	const form = document.getElementById("subscribe-form") as HTMLFormElement;
+	const emailInput = document.getElementById(
+		"email-input",
+	) as HTMLInputElement;
+	const submitButton = document.getElementById(
+		"subscribe-button",
+	) as HTMLButtonElement;
+	const buttonText = document.getElementById(
+		"button-text",
+	) as HTMLSpanElement;
+	const buttonLoading = document.getElementById(
+		"button-loading",
+	) as HTMLSpanElement;
+	const messageDiv = document.getElementById("message") as HTMLDivElement;
+
+	form.addEventListener("submit", async (e) => {
+		e.preventDefault();
+
+		const email = emailInput.value.trim();
+
+		if (!email) {
+			showMessage("Please enter your email address", "error");
+			return;
+		}
+
+		// Disable form during submission
+		submitButton.disabled = true;
+		buttonText.classList.add("hidden");
+		buttonLoading.classList.remove("hidden");
+		messageDiv.classList.add("hidden");
+
+		try {
+			const response = await fetch("/api/subscribe", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ email }),
+			});
+
+			const data = await response.json();
+
+			if (response.ok) {
+				showMessage(
+					"🎉 Welcome to the Homesick Highway community!",
+					"success",
+				);
+				emailInput.value = "";
+			} else {
+				showMessage(
+					data.error || "Something went wrong. Please try again.",
+					"error",
+				);
+			}
+		} catch (error) {
+			console.error("Subscription error:", error);
+			showMessage(
+				"Network error. Please check your connection and try again.",
+				"error",
+			);
+		} finally {
+			// Re-enable form
+			submitButton.disabled = false;
+			buttonText.classList.remove("hidden");
+			buttonLoading.classList.add("hidden");
+		}
+	});
+
+	function showMessage(message: string, type: "success" | "error") {
+		messageDiv.textContent = message;
+		messageDiv.classList.remove("hidden", "text-success", "text-error");
+		messageDiv.classList.add(
+			type === "success" ? "text-success" : "text-error",
+		);
+	}
+</script>

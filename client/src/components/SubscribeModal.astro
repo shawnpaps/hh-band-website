@@ -12,26 +12,44 @@ const { delay = 3000 } = Astro.props;
 	data-delay={delay}
 	aria-hidden="true"
 >
-	<div class="modal-box max-w-lg text-center space-y-6">
-		<h2 class="text-4xl font-family-sancreek">Don't Miss Your Exit</h2>
-		<p class="font-family-chelsea">
+	<div
+		class="modal-box max-w-lg text-center space-y-4 sm:space-y-6 p-4 sm:p-6 mx-4"
+	>
+		<h2 class="text-2xl sm:text-3xl md:text-4xl font-family-sancreek">
+			Don't Miss Your Exit
+		</h2>
+		<p class="font-family-chelsea text-sm sm:text-base">
 			Join the text + email list for first dibs on shows, drops, and
 			secret truck-stop sets.
 		</p>
-		<form class="space-y-4">
+		<form id="modal-subscribe-form" class="space-y-4">
 			<input
 				type="email"
-				class="input input-bordered w-full bg-transparent"
+				id="modal-email-input"
+				name="email"
+				class="input input-bordered w-full bg-transparent text-sm sm:text-base"
 				placeholder="yourname@email.com"
 				required
 			/>
-			<button type="submit" class="btn btn-accent w-full rounded-full">
-				Get Updates
+			<button
+				type="submit"
+				id="modal-subscribe-button"
+				class="btn btn-accent w-full rounded-full text-sm sm:text-base"
+			>
+				<span id="modal-button-text">Get Updates</span>
+				<span
+					id="modal-button-loading"
+					class="loading loading-spinner hidden"></span>
 			</button>
+			<div
+				id="modal-message"
+				class="text-center hidden text-sm font-family-chelsea"
+			>
+			</div>
 		</form>
 		<button
 			type="button"
-			class="btn btn-ghost w-full rounded-full"
+			class="btn btn-ghost w-full rounded-full text-sm sm:text-base"
 			data-close-modal
 			data-dismiss-session="true"
 		>
@@ -46,7 +64,12 @@ const { delay = 3000 } = Astro.props;
 		if (!modal) return;
 
 		const delay = Number(modal.dataset.delay || 3000);
-		const form = modal.querySelector("form");
+		const form = document.getElementById("modal-subscribe-form");
+		const emailInput = document.getElementById("modal-email-input");
+		const submitButton = document.getElementById("modal-subscribe-button");
+		const buttonText = document.getElementById("modal-button-text");
+		const buttonLoading = document.getElementById("modal-button-loading");
+		const messageDiv = document.getElementById("modal-message");
 		const DISMISS_KEY = "hh-subscribe-dismissed";
 		const sessionStore = (() => {
 			try {
@@ -110,11 +133,70 @@ const { delay = 3000 } = Astro.props;
 		});
 
 		if (form) {
-			form.addEventListener("submit", (event) => {
+			form.addEventListener("submit", async (event) => {
 				event.preventDefault();
-				form.reset();
-				closeModal();
+
+				const email = emailInput.value.trim();
+
+				if (!email) {
+					showMessage("Please enter your email address", "error");
+					return;
+				}
+
+				// Disable form during submission
+				submitButton.disabled = true;
+				buttonText.classList.add("hidden");
+				buttonLoading.classList.remove("hidden");
+				messageDiv.classList.add("hidden");
+
+				try {
+					const response = await fetch("/api/subscribe", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify({ email }),
+					});
+
+					const data = await response.json();
+
+					if (response.ok) {
+						showMessage(
+							"🎉 Welcome to the Homesick Highway community!",
+							"success",
+						);
+						form.reset();
+						setTimeout(() => {
+							closeModal(true);
+						}, 2000);
+					} else {
+						showMessage(
+							data.error ||
+								"Something went wrong. Please try again.",
+							"error",
+						);
+					}
+				} catch (error) {
+					console.error("Subscription error:", error);
+					showMessage(
+						"Network error. Please check your connection and try again.",
+						"error",
+					);
+				} finally {
+					// Re-enable form
+					submitButton.disabled = false;
+					buttonText.classList.remove("hidden");
+					buttonLoading.classList.add("hidden");
+				}
 			});
+		}
+
+		function showMessage(message, type) {
+			messageDiv.textContent = message;
+			messageDiv.classList.remove("hidden", "text-success", "text-error");
+			messageDiv.classList.add(
+				type === "success" ? "text-success" : "text-error",
+			);
 		}
 	})();
 </script>
