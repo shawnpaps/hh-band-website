@@ -10,7 +10,6 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
 	integrations: [react()],
 	adapter: netlify(),
-	output: "static",
 
 	vite: {
 		plugins: [tailwindcss()],
