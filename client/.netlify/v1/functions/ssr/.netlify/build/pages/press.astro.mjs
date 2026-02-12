@@ -1,1 +1,169 @@
-// Contents removed by Astro as it's used for prerendering only
+import { c as createComponent, i as renderComponent, r as renderTemplate, m as maybeRenderHead, f as addAttribute } from '../chunks/astro/server_kQJ0UsT0.mjs';
+import { $ as $$RootLayout } from '../chunks/RootLayout_Evy2IL_L.mjs';
+export { renderers } from '../renderers.mjs';
+
+const $$Press = createComponent(($$result, $$props, $$slots) => {
+  const heroImage = "https://hh-marketing-website.s3.us-east-2.amazonaws.com/HH_Promos+(36+of+37).jpg";
+  const bioShort = "Heavy southern riffs, hardcore breakdowns, and outlaw storytelling\u2014Homesick Highway bends the line between roadhouse country and sweaty club shows.";
+  const bioLong = `Homesick Highway is a band hailing from the Florida swamps, blending styles of their hardcore/metalcore roots and their love of country music to create a unique sound of their own. The band strives to push the music industry through their southern riffs, catchy choruses, hard-hitting breakdowns, meaningful lyrics, and a rebellious sense of fun.
+
+Their debut single "Lucid Vision" is high energy call to the listener to shoot their shot and take the risk to live a life that they want to live. Become what you're meant to be.`;
+  const tracks = [
+    {
+      title: "Lucid Vision",
+      release: "2026",
+      stream: "https://open.spotify.com/embed/track/0kDemoLucidVision",
+      download: "#",
+      explicit: false
+    },
+    {
+      title: "Truck Stop Halo (Demo)",
+      release: "2025",
+      stream: "https://open.spotify.com/embed/track/0kDemoTruckStop",
+      download: "#",
+      explicit: true
+    },
+    {
+      title: "Fever Mile",
+      release: "2024",
+      stream: "https://open.spotify.com/embed/track/0kDemoFeverMile",
+      download: "#",
+      explicit: false
+    }
+  ];
+  const videos = [
+    {
+      title: "Live at Gasparilla Fest",
+      url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      type: "Live Performance"
+    },
+    {
+      title: "Lucid Vision (Official Visualizer)",
+      url: "https://www.youtube.com/embed/oHg5SJYRHA0",
+      type: "Official Video"
+    },
+    {
+      title: "Backstage Breakdown",
+      url: "https://www.youtube.com/embed/V-_O7nl0Ii0",
+      type: "Behind the Scenes"
+    }
+  ];
+  const photos = {
+    press: Array.from({ length: 4 }, () => heroImage),
+    live: Array.from({ length: 4 }, () => heroImage)
+  };
+  const achievements = [
+    "Direct support for A Day To Remember, Lakeview, and Maylene & the Sons of Disaster.",
+    'Featured on "New Blood Country" Apple Music playlist within 48 hours of release.',
+    "100+ high-energy shows across the Southeast with repeat sellouts in Tampa, Jacksonville, and Atlanta.",
+    "Regional radio spins on 97X, The Buzz, and Pirate Radio FM."
+  ];
+  const liveInfo = {
+    draw: "250\u2013400 cap rooms in core markets",
+    cities: ["Tampa, FL", "Jacksonville, FL", "Atlanta, GA", "Nashville, TN"],
+    venues: ["The Ritz Ybor", "1904 Music Hall", "Terminal West", "Exit/In"],
+    availability: "Routing Spring & Summer 2026 \u2022 Southeast + Texas"
+  };
+  const riderLinks = [
+    {
+      label: "Download Tech Rider (PDF)",
+      href: "/docs/homesick-highway-tech-rider.pdf"
+    },
+    {
+      label: "Download Stage Plot (PDF)",
+      href: "/docs/homesick-highway-stage-plot.pdf"
+    }
+  ];
+  const contacts = [
+    {
+      type: "Booking",
+      person: "",
+      email: "booking@homesickhighway.com",
+      phone: ""
+    },
+    {
+      type: "Press",
+      person: "",
+      email: "press@homesickhighway.com",
+      phone: ""
+    },
+    {
+      type: "Management",
+      person: "Noise Management",
+      email: "mgmt@homesickhighway.com",
+      phone: ""
+    }
+  ];
+  const socials = [
+    { label: "Instagram", href: "https://www.instagram.com/homesickhighway" },
+    { label: "TikTok", href: "https://www.tiktok.com/@homesickhighway" },
+    { label: "Facebook", href: "https://www.facebook.com/homesickhighway" },
+    { label: "YouTube", href: "https://www.youtube.com/@homesickhighway" },
+    { label: "X / Twitter", href: "https://twitter.com/homesickhwy" }
+  ];
+  return renderTemplate`${renderComponent($$result, "RootLayout", $$RootLayout, { "title": "Homesick Highway \u2014 Electronic Press Kit", "description": "Press-ready bio, music, video, photos, and booking info for Homesick Highway." }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<section class="relative mt-32 lg:mt-40 min-h-[80vh] overflow-hidden bg-black text-white"> <img${addAttribute(heroImage, "src")} alt="Homesick Highway hero" class="absolute inset-0 h-full w-full object-cover"> <div class="absolute inset-0 bg-gradient-to-b from-black via-black/70 to-black"></div> <div class="relative mx-auto flex max-w-6xl flex-col gap-8 px-6 py-24 lg:px-12"> <div class="flex flex-col gap-3"> <p class="text-sm uppercase tracking-[0.5em] text-amber-400">
+Homesick Highway
+</p> <h1 class="text-4xl font-family-danfo sm:text-6xl">
+Heavy Southern Rock
+</h1> <p class="max-w-2xl text-lg text-white/80 badge badge-neutral rounded-full">
+Tampa, Florida
+</p> </div> <div class="flex flex-wrap gap-4"> <a class="btn btn-accent btn-lg rounded-full font-family-chelsea" href="#music">Listen</a> <a class="btn btn-outline btn-lg rounded-full" href="#videos">Watch Live</a> <a class="btn btn-neutral btn-lg rounded-full" href="#contact">Contact / Booking</a> </div> </div> </section> <section class="bg-black px-6 py-16 text-white lg:px-12"> <div class="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[2fr_1fr]"> <div class="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm"> <p class="text-sm uppercase tracking-[0.4em] text-amber-400">
+Short Bio
+</p> <p class="mt-4 text-xl leading-relaxed">${bioShort}</p> <details class="mt-6 rounded-2xl border border-white/10 bg-black/40 p-4"> <summary class="cursor-pointer text-sm uppercase tracking-[0.2em] text-white/70">
+Read full bio
+</summary> <p class="mt-4 whitespace-pre-line text-base leading-7"> ${bioLong} </p> </details> </div> <div class="rounded-3xl border border-white/10 bg-gradient-to-b from-amber-500/20 to-white/5 p-8"> <p class="text-sm uppercase tracking-[0.4em] text-amber-300">
+Quick Stats
+</p> <ul class="mt-4 space-y-3 text-sm uppercase tracking-widest text-white/80"> <li>Hometown · Tampa, FL</li> <li>Genre · Heavy Southern Rock</li> <li>Active Since · 2024</li> <li>Status · Independent</li> </ul> <a class="btn btn-outline btn-sm mt-6 w-full rounded-full" href="#downloads">
+Download Full EPK
+</a> </div> </div> </section> <section id="music" class="bg-black px-6 py-16 text-white lg:px-12"> <div class="mx-auto max-w-6xl space-y-8"> <div class="flex flex-col gap-2"> <p class="text-sm uppercase tracking-[0.4em] text-amber-400">
+Music
+</p> <h2 class="text-3xl font-family-sancreek">Featured Tracks</h2> </div> <div class="grid gap-6 md:grid-cols-3"> ${tracks.map((track) => renderTemplate`<div class="flex flex-col rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur"> <div class="flex items-center justify-between"> <div> <p class="text-xl font-bold"> ${track.title} </p> <p class="text-sm uppercase tracking-[0.3em] text-white/60"> ${track.release} ${track.explicit && " \u2022 Explicit"} </p> </div> <div class="badge badge-outline border-amber-400 text-amber-300">
+Stream
+</div> </div> <iframe${addAttribute(track.stream, "src")} loading="lazy" allow="encrypted-media" class="mt-4 h-32 w-full rounded-2xl border-0"></iframe> <div class="mt-4 flex gap-3"> <a class="btn btn-sm btn-accent rounded-full"${addAttribute(track.stream, "href")}>
+Play
+</a> <a class="btn btn-sm btn-outline rounded-full"${addAttribute(track.download, "href")}>
+Download WAV
+</a> </div> </div>`)} </div> </div> </section> <section id="videos" class="bg-black px-6 py-16 text-white lg:px-12"> <div class="mx-auto max-w-6xl space-y-8"> <div class="flex flex-col gap-2"> <p class="text-sm uppercase tracking-[0.4em] text-amber-400">
+Video
+</p> <h2 class="text-3xl font-family-sancreek">Proof of Life</h2> </div> <div class="grid gap-6 md:grid-cols-3"> ${videos.map((video) => renderTemplate`<div class="rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur"> <div class="aspect-video overflow-hidden rounded-2xl"> <iframe${addAttribute(video.url, "src")}${addAttribute(video.title, "title")} loading="lazy" class="h-full w-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div> <div class="mt-4"> <p class="text-lg font-semibold"> ${video.title} </p> <p class="text-xs uppercase tracking-[0.3em] text-white/60"> ${video.type} </p> </div> </div>`)} </div> </div> </section> <section id="photos" class="bg-black px-6 py-16 text-white lg:px-12"> <div class="mx-auto max-w-6xl space-y-10"> <div class="flex flex-col gap-2"> <p class="text-sm uppercase tracking-[0.4em] text-amber-400">
+Photos
+</p> <h2 class="text-3xl font-family-sancreek">
+Press-Ready Visuals
+</h2> </div> <div class="grid gap-8 lg:grid-cols-2" id="assets"> <div class="rounded-3xl border border-white/10 bg-white/5 p-6"> <h3 class="text-2xl font-family-chelsea">Press Photos</h3> <div class="mt-4 grid gap-4 sm:grid-cols-2"> ${photos.press.map((img, i) => renderTemplate`<div class="overflow-hidden rounded-2xl"> <img${addAttribute(img, "src")}${addAttribute(`Press photo ${i + 1}`, "alt")} class="h-48 w-full object-cover"> </div>`)} </div> <a class="btn btn-outline btn-sm mt-6 rounded-full w-full" href="#downloads">
+Download hi-res set
+</a> </div> <div class="rounded-3xl border border-white/10 bg-white/5 p-6"> <h3 class="text-2xl font-family-chelsea">Live Photos</h3> <div class="mt-4 grid gap-4 sm:grid-cols-2"> ${photos.live.map((img, i) => renderTemplate`<div class="overflow-hidden rounded-2xl"> <img${addAttribute(img, "src")}${addAttribute(`Live photo ${i + 1}`, "alt")} class="h-48 w-full object-cover"> </div>`)} </div> <a class="btn btn-outline btn-sm mt-6 rounded-full w-full" href="#downloads">
+Download live set
+</a> </div> </div> </div> </section> <section class="bg-black px-6 py-16 text-white lg:px-12"> <div class="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2"> <div class="rounded-3xl border border-white/10 bg-white/5 p-8"> <p class="text-sm uppercase tracking-[0.4em] text-amber-400">
+Notable Moments
+</p> <ul class="mt-4 list-disc space-y-3 pl-5 text-base leading-7"> ${achievements.map((item) => renderTemplate`<li>${item}</li>`)} </ul> </div> <div class="rounded-3xl border border-white/10 bg-white/5 p-8"> <p class="text-sm uppercase tracking-[0.4em] text-amber-400">
+Live Performance
+</p> <div class="mt-4 space-y-4 text-base leading-7"> <p> <strong>Typical Draw:</strong> ${liveInfo.draw} </p> <p> <strong>Top Cities:</strong> ${liveInfo.cities.join(" \u2022 ")} </p> <p> <strong>Notable Venues:</strong> ${liveInfo.venues.join(", ")} </p> <p> <strong>Availability:</strong> ${liveInfo.availability} </p> </div> </div> </div> </section> <section id="downloads" class="bg-black px-6 py-16 text-white lg:px-12"> <div class="mx-auto max-w-6xl space-y-8"> <div class="flex flex-col gap-2"> <p class="text-sm uppercase tracking-[0.4em] text-amber-400">
+Rider & Stage Plot
+</p> <h2 class="text-3xl font-family-sancreek">
+Ready For Your Stage
+</h2> <p class="text-white/70">
+Four-piece core with auxiliary percussion and tracks. Fits
+					most mid-size stages with minimal changeover.
+</p> </div> <div class="grid gap-4 md:grid-cols-2"> ${riderLinks.map((doc) => renderTemplate`<a${addAttribute(doc.href, "href")} class="flex items-center justify-between rounded-3xl border border-white/10 bg-white/5 px-6 py-5 text-lg transition hover:bg-white/10"> <span class="font-family-chelsea">${doc.label}</span> <span class="text-sm uppercase tracking-[0.3em] text-white/60">
+PDF
+</span> </a>`)} </div> </div> </section> <section id="contact" class="bg-black px-6 py-16 text-white lg:px-12"> <div class="mx-auto max-w-6xl space-y-8"> <div class="flex flex-col gap-2"> <p class="text-sm uppercase tracking-[0.4em] text-amber-400">
+Contact & Booking
+</p> <h2 class="text-3xl font-family-sancreek">Talk To The Band</h2> <p class="text-white/70">
+We respond within 24 hours. Text line available for urgent
+					routing holds.
+</p> </div> <div class="grid gap-6 md:grid-cols-3"> ${contacts.map((contact) => renderTemplate`<div class="rounded-3xl border border-white/10 bg-white/5 p-6"> <p class="text-sm uppercase tracking-[0.3em] text-amber-300"> ${contact.type} </p> <p class="mt-2 text-2xl font-family-chelsea"> ${contact.person} </p> <a class="mt-4 block text-lg underline"${addAttribute(`mailto:${contact.email}`, "href")}> ${contact.email} </a> <p class="text-sm text-white/60">${contact.phone}</p> </div>`)} </div> <div class="flex flex-wrap gap-3"> ${socials.map((social) => renderTemplate`<a class="btn btn-outline btn-sm rounded-full"${addAttribute(social.href, "href")}> ${social.label} </a>`)} </div> </div> </section> ` })}`;
+}, "/Users/shawnpapineau/Developer/homesick-highway/hh-band-website/client/src/pages/press.astro", void 0);
+
+const $$file = "/Users/shawnpapineau/Developer/homesick-highway/hh-band-website/client/src/pages/press.astro";
+const $$url = "/press";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+	__proto__: null,
+	default: $$Press,
+	file: $$file,
+	url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };
