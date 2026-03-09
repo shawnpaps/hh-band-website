@@ -5,35 +5,36 @@
 <div
 	class="mx-auto p-4 sm:p-8 md:p-12 lg:p-16 mt-4 bg-black-50 backdrop-blur-sm rounded-lg w-full max-w-2xl"
 >
+	<form
+		id="subscribe-form"
+		class="flex flex-col items-center gap-3 sm:gap-4 md:gap-5"
+	>
+		<div class="w-full max-w-xl">
+			<input
+				type="email"
+				id="email-input"
+				name="email"
+				placeholder="your@email.com"
+				required
+				class="input input-lg md:input-xl font-family-chelsea input-primary bg-transparent input-outline w-full text-base md:text-lg"
+			/>
+		</div>
+		<button
+			type="submit"
+			id="subscribe-button"
+			class="btn btn-success btn-lg md:btn-xl block w-full max-w-xl text-base md:text-lg"
+		>
+			<span id="button-text">Join the community</span>
+			<span id="button-loading" class="loading loading-spinner hidden"
+			></span>
+		</button>
+		<div
+			id="message"
+			class="text-center hidden text-sm sm:text-base md:text-lg font-family-chelsea"
+		>
+		</div>
+	</form>
 </div>
-<form
-	id="subscribe-form"
-	class="flex flex-col items-center gap-3 sm:gap-4 md:gap-5"
->
-	<div class="w-full max-w-xl">
-		<input
-			type="email"
-			id="email-input"
-			name="email"
-			placeholder="your@email.com"
-			required
-			class="input input-lg md:input-xl font-family-chelsea input-primary bg-transparent input-outline w-full text-base md:text-lg"
-		/>
-	</div>
-	<button
-		type="submit"
-		id="subscribe-button"
-		class="btn btn-success btn-lg md:btn-xl block w-full max-w-xl text-base md:text-lg"
-	>
-		<span id="button-text">Join the community</span>
-		<span id="button-loading" class="loading loading-spinner hidden"></span>
-	</button>
-	<div
-		id="message"
-		class="text-center hidden text-sm sm:text-base md:text-lg font-family-chelsea"
-	>
-	</div>
-</form>
 
 <script>
 	const form = document.getElementById("subscribe-form") as HTMLFormElement;
