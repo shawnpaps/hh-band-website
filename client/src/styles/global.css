@@ -1,10 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,300;1,14..32,400&display=swap");
 @import "tailwindcss";
-@plugin "daisyui" {
-	themes: "all";
+
+/* ─── Font theme tokens ─────────────────────────────────────────────────────── */
+@theme {
+	--font-display: "Bebas Neue", "Impact", sans-serif;
+	--font-body: "Inter", system-ui, -apple-system, sans-serif;
 }
 
-@theme {
-	--font-family-chelsea: "Chelsea Market", cursive;
-	--font-family-danfo: "Danfo", serif;
-	--font-family-sancreek: "Sancreek", serif;
+/* ─── Base reset ────────────────────────────────────────────────────────────── */
+
+html {
+	scroll-behavior: smooth;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Selection ─────────────────────────────────────────────────────────────── */
+::selection {
+	background-color: #c8922a;
+	color: #080808;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+	width: 5px;
+}
+::-webkit-scrollbar-track {
+	background: #080808;
+}
+::-webkit-scrollbar-thumb {
+	background: #2a2a2a;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #c8922a;
+}
+
+/* ─── Marquee animation ─────────────────────────────────────────────────────── */
+@keyframes marquee {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+.marquee-track {
+	display: flex;
+	width: max-content;
+	animation: marquee 30s linear infinite;
+}
+
+.marquee-track:hover {
+	animation-play-state: paused;
 }

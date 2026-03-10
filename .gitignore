@@ -72,6 +72,9 @@ web_modules/
 # Yarn Integrity file
 .yarn-integrity
 
+# AI prompt documentation (contains band strategy / easter egg details)
+AI_CHATBOT_PROMPT.md
+
 # dotenv environment variable files
 .env
 .env.development.local

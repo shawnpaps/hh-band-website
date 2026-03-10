@@ -1,9 +1,10 @@
 ---
 import RootLayout from "../layouts/RootLayout.astro";
+import Hero from "../components/Hero.astro";
 
 const bioLong = `Homesick Highway is a band hailing from the Florida swamps, blending styles of their hardcore/metalcore roots and their love of country music to create a unique sound of their own. The band strives to push the music industry through their southern riffs, catchy choruses, hard-hitting breakdowns, meaningful lyrics, and a rebellious sense of fun.
 
-Their debut single "Lucid Vision" is high energy call to the listener to shoot their shot and take the risk to live a life that they want to live. Become what you're meant to be.`;
+Their debut single "Lucid Vision" is a high energy call to the listener to shoot their shot and take the risk to live a life that they want to live. Become what you're meant to be.`;
 ---
 
 <RootLayout
@@ -11,46 +12,47 @@ Their debut single "Lucid Vision" is high energy call to the listener to shoot t
 	description="Learn about Homesick Highway, Tampa's premier hard rock band blending hardcore/metalcore roots with country music. Discover the story behind Florida's most exciting new rock band."
 	keywords="Homesick Highway about, Tampa rock band story, Florida hard rock band, country metal fusion, hardcore metalcore Florida, band biography, Tampa music scene"
 >
-	<!-- Hero Section -->
-	<section
-		class="relative min-h-[60vh] flex items-center justify-center overflow-hidden"
-	>
-		<div class="absolute inset-0 z-0">
-			<img
-				src="https://hh-marketing-website.s3.us-east-2.amazonaws.com/HH_Promos+(36+of+37).jpg"
-				alt="Homesick Highway Band"
-				class="w-full h-full object-cover"
-			/>
+	<!-- ─── Hero ──────────────────────────────────────────────────────────── -->
+	<Hero
+		heroText="About"
+		heroImageUrl="https://hh-marketing-website.s3.us-east-2.amazonaws.com/HH_Promos+(36+of+37).jpg"
+		subText="From the Florida swamps to the stage"
+	/>
+
+	<!-- ─── Bio ───────────────────────────────────────────────────────────── -->
+	<section class="bg-[#080808]">
+		<div class="max-w-7xl mx-auto px-6 lg:px-10 py-24 md:py-32">
 			<div
-				class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90"
+				class="grid md:grid-cols-[1fr_2fr] gap-16 lg:gap-24 items-start"
 			>
-			</div>
-		</div>
+				<!-- Left: label + rule -->
+				<div class="md:sticky md:top-28">
+					<p
+						class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-4"
+					>
+						Our Story
+					</p>
+					<div class="w-10 h-px bg-[#c8922a] mb-8"></div>
+					<p
+						class="text-5xl sm:text-6xl lg:text-7xl leading-none tracking-wide text-[#f0ece4]"
+						style="font-family: 'Bebas Neue', Impact, sans-serif;"
+					>
+						Homesick<br />Highway
+					</p>
+					<p
+						class="mt-4 text-sm text-white/40 tracking-widest uppercase"
+					>
+						Tampa, FL · Est. 2024
+					</p>
+				</div>
 
-		<div class="relative z-10 container mx-auto px-4 py-20 text-center">
-			<h1
-				class="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold font-family-danfo text-white leading-none mb-6"
-			>
-				About <span class="italic font-light text-orange-400">Us</span>
-			</h1>
-			<p
-				class="text-xl sm:text-2xl md:text-3xl text-white/80 font-family-chelsea italic max-w-3xl mx-auto"
-			>
-				From the Florida swamps to the stage
-			</p>
-		</div>
-	</section>
-
-	<!-- Bio Section -->
-	<section class="py-16 md:py-24 bg-base-100">
-		<div class="container mx-auto px-4 max-w-5xl">
-			<div class="space-y-8">
-				<div class="space-y-6 text-center md:text-left">
+				<!-- Right: bio paragraphs -->
+				<div class="space-y-8">
 					{
 						bioLong
 							.split("\n\n")
 							.map((paragraph) => (
-								<p class="text-xl sm:text-2xl md:text-3xl leading-relaxed font-family-chelsea text-black/90">
+								<p class="text-lg md:text-xl text-white/75 leading-relaxed">
 									{paragraph}
 								</p>
 							))
@@ -60,111 +62,137 @@ Their debut single "Lucid Vision" is high energy call to the listener to shoot t
 		</div>
 	</section>
 
-	<!-- Band Photo Section -->
-	<section class="py-16 md:py-24 bg-black">
-		<div class="container mx-auto px-4">
-			<div class="max-w-6xl mx-auto">
+	<!-- ─── Full-width Band Photo ─────────────────────────────────────────── -->
+	<section class="bg-[#080808]">
+		<div class="max-w-7xl mx-auto px-6 lg:px-10">
+			<div class="border border-white/8 overflow-hidden">
 				<img
 					src="https://hh-marketing-website.s3.us-east-2.amazonaws.com/HH_Promos+(36+of+37).jpg"
-					alt="Homesick Highway Band Photo"
-					class="w-full rounded-lg shadow-2xl"
+					alt="Homesick Highway band photo"
+					class="w-full object-cover"
+					style="max-height: 70vh; object-position: center 30%;"
 				/>
 			</div>
 		</div>
 	</section>
 
-	<!-- Sound Description -->
-	<section class="py-16 md:py-24 bg-base-100">
-		<div class="container mx-auto px-4 max-w-4xl text-center">
-			<h2
-				class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-family-sancreek mb-8"
+	<!-- ─── Sound ─────────────────────────────────────────────────────────── -->
+	<section class="bg-[#111111] border-t border-white/8">
+		<div class="max-w-7xl mx-auto px-6 lg:px-10 py-24 md:py-32">
+			<p
+				class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-4"
 			>
-				Our Sound
-			</h2>
-			<div class="space-y-6">
-				<p
-					class="text-2xl sm:text-3xl md:text-4xl font-family-danfo text-orange-600"
-				>
-					Southern Riffs + Hard-Hitting Breakdowns + Outlaw
-					Storytelling
-				</p>
-				<p
-					class="text-xl sm:text-2xl font-family-chelsea text-black/80 italic"
-				>
-					Where roadhouse country meets the intensity of the pit
-				</p>
+				The Sound
+			</p>
+			<div class="w-10 h-px bg-[#c8922a] mb-12"></div>
+
+			<div
+				class="grid sm:grid-cols-3 gap-px bg-white/8 border border-white/8"
+			>
+				{
+					[
+						{
+							heading: "Southern Riffs",
+							body: "Rooted in the sweaty, heavy guitar tradition of the American South.",
+						},
+						{
+							heading: "Hard-Hitting Breakdowns",
+							body: "Metalcore intensity that lands in the chest every time.",
+						},
+						{
+							heading: "Outlaw Storytelling",
+							body: "Lyrics drawn from real life — reckless, honest, and hard to shake.",
+						},
+					].map((item) => (
+						<div class="bg-[#111111] p-8 md:p-10">
+							<h3
+								class="text-4xl md:text-5xl leading-none tracking-wide text-[#f0ece4] mb-4"
+								style="font-family: 'Bebas Neue', Impact, sans-serif;"
+							>
+								{item.heading}
+							</h3>
+							<p class="text-sm text-white/50 leading-relaxed">
+								{item.body}
+							</p>
+						</div>
+					))
+				}
 			</div>
+
+			<p
+				class="mt-12 text-xl md:text-2xl text-white/45 italic font-light leading-relaxed max-w-2xl"
+			>
+				Where roadhouse country meets the intensity of the pit.
+			</p>
 		</div>
 	</section>
 
-	<!-- For Fans Of Section -->
-	<section class="py-16 md:py-24 bg-black text-white">
-		<div class="container mx-auto px-4 max-w-5xl">
-			<h2
-				class="text-4xl sm:text-5xl md:text-6xl font-bold font-family-sancreek text-center mb-12"
+	<!-- ─── For Fans Of ───────────────────────────────────────────────────── -->
+	<section class="bg-[#080808] border-t border-white/8">
+		<div class="max-w-7xl mx-auto px-6 lg:px-10 py-24 md:py-32">
+			<p
+				class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-4"
 			>
 				For Fans Of
-			</h2>
-			<div
-				class="flex flex-wrap justify-center items-center gap-6 md:gap-8 lg:gap-12"
-			>
-				<div
-					class="text-2xl sm:text-3xl md:text-4xl font-family-danfo text-orange-400 hover:text-orange-300 transition-colors"
-				>
-					A Day To Remember
-				</div>
-				<div class="text-4xl text-white/30">•</div>
-				<div
-					class="text-2xl sm:text-3xl md:text-4xl font-family-danfo text-orange-400 hover:text-orange-300 transition-colors"
-				>
-					HARDY
-				</div>
-				<div class="text-4xl text-white/30">•</div>
-				<div
-					class="text-2xl sm:text-3xl md:text-4xl font-family-danfo text-orange-400 hover:text-orange-300 transition-colors"
-				>
-					Lakeview
-				</div>
-				<div class="text-4xl text-white/30">•</div>
-				<div
-					class="text-2xl sm:text-3xl md:text-4xl font-family-danfo text-orange-400 hover:text-orange-300 transition-colors"
-				>
-					Nickelback
-				</div>
-				<div class="text-4xl text-white/30">•</div>
-				<div
-					class="text-2xl sm:text-3xl md:text-4xl font-family-danfo text-orange-400 hover:text-orange-300 transition-colors"
-				>
-					Gideon
-				</div>
-			</div>
+			</p>
+			<div class="w-10 h-px bg-[#c8922a] mb-12"></div>
+
+			<ul class="flex flex-wrap gap-3">
+				{
+					[
+						"A Day To Remember",
+						"HARDY",
+						"Lakeview",
+						"Nickelback",
+						"Gideon",
+						"Maylene & the Sons of Disaster",
+					].map((band) => (
+						<li>
+							<span class="inline-block border border-white/12 px-5 py-2.5 text-sm font-semibold tracking-wide text-white/65 hover:border-[#c8922a] hover:text-[#c8922a] transition-colors duration-150 cursor-default">
+								{band}
+							</span>
+						</li>
+					))
+				}
+			</ul>
 		</div>
 	</section>
 
-	<!-- CTA Section -->
-	<section class="py-16 md:py-24 bg-black text-white">
-		<div class="container mx-auto px-4 text-center">
-			<h2
-				class="text-4xl sm:text-5xl md:text-6xl font-bold font-family-danfo mb-8"
+	<!-- ─── CTA ───────────────────────────────────────────────────────────── -->
+	<section class="bg-[#111111] border-t border-white/8">
+		<div class="max-w-7xl mx-auto px-6 lg:px-10 py-24 md:py-32">
+			<div
+				class="flex flex-col md:flex-row md:items-end justify-between gap-10"
 			>
-				Ready to Experience <span
-					class="italic font-light text-orange-400"
-					>Homesick Highway</span
-				>?
-			</h2>
-			<div class="flex flex-col sm:flex-row gap-4 justify-center mt-12">
-				<a
-					href="/#music"
-					class="btn btn-accent btn-lg px-8 font-family-chelsea text-lg hover:scale-105 transition-transform"
-				>
-					Listen to Our Music
-				</a>
-				<a
-					href="/shows"
-					class="btn btn-outline btn-lg px-8 font-family-chelsea text-lg hover:scale-105 transition-transform"
-				>
-					See Us Live
-				</a>
+				<div>
+					<p
+						class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-4"
+					>
+						Ready?
+					</p>
+					<h2
+						class="text-6xl sm:text-7xl md:text-8xl leading-none tracking-wide text-[#f0ece4]"
+						style="font-family: 'Bebas Neue', Impact, sans-serif;"
+					>
+						Experience<br /><span class="text-[#c8922a]"
+							>Homesick Highway</span
+						>
+					</h2>
+				</div>
+				<div class="flex flex-col sm:flex-row gap-4 flex-shrink-0">
+					<a
+						href="/#music"
+						class="inline-flex items-center justify-center text-[0.8125rem] font-semibold tracking-[0.12em] uppercase px-9 py-3.5 bg-[#c8922a] text-[#080808] border border-[#c8922a] hover:bg-[#a87520] hover:border-[#a87520] transition-colors duration-150"
+					>
+						Listen to Our Music
+					</a>
+					<a
+						href="/shows"
+						class="inline-flex items-center justify-center text-[0.8125rem] font-semibold tracking-[0.12em] uppercase px-9 py-3.5 bg-transparent text-[#f0ece4] border border-white/30 hover:bg-white/6 hover:border-white/55 transition-colors duration-150"
+					>
+						See Us Live
+					</a>
+				</div>
 			</div>
 		</div>
 	</section>

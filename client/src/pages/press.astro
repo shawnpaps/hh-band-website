@@ -1,469 +1,640 @@
 ---
 import RootLayout from "../layouts/RootLayout.astro";
-import FFOTicker from "../components/FFOTicker.astro";
-
-const heroImage =
-	"https://hh-marketing-website.s3.us-east-2.amazonaws.com/HH_Promos+(36+of+37).jpg";
+import Hero from "../components/Hero.astro";
 
 const bioShort =
 	"Heavy southern riffs, hardcore breakdowns, and outlaw storytelling—Homesick Highway bends the line between roadhouse country and sweaty club shows.";
+
 const bioLong = `Homesick Highway is a band hailing from the Florida swamps, blending styles of their hardcore/metalcore roots and their love of country music to create a unique sound of their own. The band strives to push the music industry through their southern riffs, catchy choruses, hard-hitting breakdowns, meaningful lyrics, and a rebellious sense of fun.
 
-Their debut single "Lucid Vision" is high energy call to the listener to shoot their shot and take the risk to live a life that they want to live. Become what you're meant to be.`;
+Their debut single "Lucid Vision" is a high energy call to the listener to shoot their shot and take the risk to live a life that they want to live. Become what you're meant to be.`;
 
-const tracks = [
-	{
-		title: "Lucid Vision",
-		release: "2026",
-		stream: "https://open.spotify.com/embed/track/0kDemoLucidVision",
-		download: "#",
-		explicit: false,
-	},
-	{
-		title: "Truck Stop Halo (Demo)",
-		release: "2025",
-		stream: "https://open.spotify.com/embed/track/0kDemoTruckStop",
-		download: "#",
-		explicit: true,
-	},
-	{
-		title: "Fever Mile",
-		release: "2024",
-		stream: "https://open.spotify.com/embed/track/0kDemoFeverMile",
-		download: "#",
-		explicit: false,
-	},
-];
-
-const videos = [
-	{
-		title: "Live at Gasparilla Fest",
-		url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-		type: "Live Performance",
-	},
-	{
-		title: "Lucid Vision (Official Visualizer)",
-		url: "https://www.youtube.com/embed/oHg5SJYRHA0",
-		type: "Official Video",
-	},
-	{
-		title: "Backstage Breakdown",
-		url: "https://www.youtube.com/embed/V-_O7nl0Ii0",
-		type: "Behind the Scenes",
-	},
-];
-
-const photos = {
-	press: Array.from({ length: 4 }, () => heroImage),
-	live: Array.from({ length: 4 }, () => heroImage),
-};
+const tracks = [{ title: "Lucid Vision", release: "2026", explicit: false }];
 
 const achievements = [
-	"Direct support for A Day To Remember, Lakeview, and Maylene & the Sons of Disaster.",
-	'Featured on "New Blood Country" Apple Music playlist within 48 hours of release.',
-	"100+ high-energy shows across the Southeast with repeat sellouts in Tampa, Jacksonville, and Atlanta.",
-	"Regional radio spins on 97X, The Buzz, and Pirate Radio FM.",
+	"Debut single 'Lucid Vision' released in March 2026 to critical acclaim, featured in major music publications and tastemaker playlists.",
 ];
 
 const liveInfo = {
 	draw: "250–400 cap rooms in core markets",
-	cities: ["Tampa, FL", "Jacksonville, FL", "Atlanta, GA", "Nashville, TN"],
-	venues: ["The Ritz Ybor", "1904 Music Hall", "Terminal West", "Exit/In"],
-	availability: "Routing Spring & Summer 2026 • Southeast + Texas",
+	cities: ["Tampa, FL"],
+	venues: ["The Noise Box", "Crowbar"],
+	availability:
+		"Spring & Summer 2026 — Southeast U.S. focus for debut single rollout, expanding nationally in 2027",
 };
 
-const riderLinks = [
-	{
-		label: "Download Tech Rider (PDF)",
-		href: "/docs/homesick-highway-tech-rider.pdf",
-	},
-	{
-		label: "Download Stage Plot (PDF)",
-		href: "/docs/homesick-highway-stage-plot.pdf",
-	},
-];
-
 const contacts = [
-	{
-		type: "Booking",
-		person: "",
-		email: "booking@homesickhighway.com",
-		phone: "",
-	},
-	{
-		type: "Press",
-		person: "",
-		email: "press@homesickhighway.com",
-		phone: "",
-	},
+	{ type: "Booking", email: "booking@homesickhighway.com" },
+	{ type: "Press", email: "press@homesickhighway.com" },
 	{
 		type: "Management",
 		person: "Noise Management",
 		email: "mgmt@homesickhighway.com",
-		phone: "",
 	},
 ];
 
 const socials = [
-	{ label: "Instagram", href: "https://www.instagram.com/homesickhighway" },
-	{ label: "TikTok", href: "https://www.tiktok.com/@homesickhighway" },
-	{ label: "Facebook", href: "https://www.facebook.com/homesickhighway" },
-	{ label: "YouTube", href: "https://www.youtube.com/@homesickhighway" },
-	{ label: "X / Twitter", href: "https://twitter.com/homesickhwy" },
+	{
+		label: "Instagram",
+		href: "https://www.instagram.com/homesickhwyofficial",
+	},
+	{ label: "TikTok", href: "https://www.tiktok.com/@homesickhwyofficial" },
+	{ label: "Facebook", href: "https://www.facebook.com/homesickhwyofficial" },
 ];
+
+const photos = Array.from(
+	{ length: 37 },
+	(_, i) =>
+		`https://hh-marketing-website.s3.us-east-2.amazonaws.com/HH_Promos+(${i + 1}+of+37).jpg`,
+);
+
+// Fisher-Yates shuffle
+for (let i = photos.length - 1; i > 0; i--) {
+	const j = Math.floor(Math.random() * (i + 1));
+	[photos[i], photos[j]] = [photos[j], photos[i]];
+}
 ---
 
 <RootLayout
 	title="Homesick Highway — Electronic Press Kit"
-	description="Press-ready bio, music, video, photos, and booking info for Homesick Highway."
+	description="Press-ready bio, music, photos, and booking info for Homesick Highway. Tampa, FL heavy southern rock."
 >
-	<section
-		class="relative mt-32 lg:mt-40 min-h-[80vh] overflow-hidden bg-black text-white"
+	<!-- ─── Hero ──────────────────────────────────────────────────────────── -->
+	<Hero
+		heroText="Press Kit"
+		heroImageUrl="https://hh-marketing-website.s3.us-east-2.amazonaws.com/HH_Promos+(9+of+37).jpg"
+		subText="Homesick Highway — Tampa, FL"
+	/>
+
+	<!-- ─── Quick Nav ─────────────────────────────────────────────────────── -->
+	<div
+		class="sticky top-16 z-40 bg-[#080808]/95 backdrop-blur-md border-b border-white/8"
 	>
-		<img
-			src={heroImage}
-			alt="Homesick Highway hero"
-			class="absolute inset-0 h-full w-full object-cover"
-		/>
-		<div
-			class="absolute inset-0 bg-gradient-to-b from-black via-black/70 to-black"
-		>
-		</div>
-		<div
-			class="relative mx-auto flex max-w-6xl flex-col gap-8 px-6 py-24 lg:px-12"
-		>
-			<div class="flex flex-col gap-3">
-				<p class="text-sm uppercase tracking-[0.5em] text-amber-400">
-					Homesick Highway
-				</p>
-				<h1 class="text-4xl font-family-danfo sm:text-6xl">
-					Heavy Southern Rock
-				</h1>
-				<p
-					class="max-w-2xl text-lg text-white/80 badge badge-neutral rounded-full"
-				>
-					Tampa, Florida
-				</p>
-			</div>
-			<div class="flex flex-wrap gap-4">
-				<a
-					class="btn btn-accent btn-lg rounded-full font-family-chelsea"
-					href="#music">Listen</a
-				>
-				<a class="btn btn-outline btn-lg rounded-full" href="#videos"
-					>Watch Live</a
-				>
-				<a class="btn btn-neutral btn-lg rounded-full" href="#contact"
-					>Contact / Booking</a
-				>
-			</div>
-		</div>
-	</section>
-
-	<section class="bg-black px-6 py-16 text-white lg:px-12">
-		<div class="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[2fr_1fr]">
-			<div
-				class="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm"
-			>
-				<p class="text-sm uppercase tracking-[0.4em] text-amber-400">
-					Short Bio
-				</p>
-				<p class="mt-4 text-xl leading-relaxed">{bioShort}</p>
-				<details
-					class="mt-6 rounded-2xl border border-white/10 bg-black/40 p-4"
-				>
-					<summary
-						class="cursor-pointer text-sm uppercase tracking-[0.2em] text-white/70"
-					>
-						Read full bio
-					</summary>
-					<p class="mt-4 whitespace-pre-line text-base leading-7">
-						{bioLong}
-					</p>
-				</details>
-			</div>
-			<div
-				class="rounded-3xl border border-white/10 bg-gradient-to-b from-amber-500/20 to-white/5 p-8"
-			>
-				<p class="text-sm uppercase tracking-[0.4em] text-amber-300">
-					Quick Stats
-				</p>
-				<ul
-					class="mt-4 space-y-3 text-sm uppercase tracking-widest text-white/80"
-				>
-					<li>Hometown · Tampa, FL</li>
-					<li>Genre · Heavy Southern Rock</li>
-					<li>Active Since · 2024</li>
-					<li>Status · Independent</li>
-				</ul>
-				<a
-					class="btn btn-outline btn-sm mt-6 w-full rounded-full"
-					href="#downloads"
-				>
-					Download Full EPK
-				</a>
-			</div>
-		</div>
-	</section>
-
-	<section id="music" class="bg-black px-6 py-16 text-white lg:px-12">
-		<div class="mx-auto max-w-6xl space-y-8">
-			<div class="flex flex-col gap-2">
-				<p class="text-sm uppercase tracking-[0.4em] text-amber-400">
-					Music
-				</p>
-				<h2 class="text-3xl font-family-sancreek">Featured Tracks</h2>
-			</div>
-			<div class="grid gap-6 md:grid-cols-3">
+		<div class="max-w-7xl mx-auto px-6 lg:px-10">
+			<nav class="flex gap-6 overflow-x-auto py-4">
 				{
-					tracks.map((track) => (
-						<div class="flex flex-col rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
-							<div class="flex items-center justify-between">
-								<div>
-									<p class="text-xl font-bold">
-										{track.title}
-									</p>
-									<p class="text-sm uppercase tracking-[0.3em] text-white/60">
-										{track.release}
-										{track.explicit && " • Explicit"}
-									</p>
-								</div>
-								<div class="badge badge-outline border-amber-400 text-amber-300">
-									Stream
-								</div>
-							</div>
-							<iframe
-								src={track.stream}
-								loading="lazy"
-								allow="encrypted-media"
-								class="mt-4 h-32 w-full rounded-2xl border-0"
-							/>
-							<div class="mt-4 flex gap-3">
-								<a
-									class="btn btn-sm btn-accent rounded-full"
-									href={track.stream}
-								>
-									Play
-								</a>
-								<a
-									class="btn btn-sm btn-outline rounded-full"
-									href={track.download}
-								>
-									Download WAV
-								</a>
-							</div>
-						</div>
-					))
-				}
-			</div>
-		</div>
-	</section>
-
-	<section id="videos" class="bg-black px-6 py-16 text-white lg:px-12">
-		<div class="mx-auto max-w-6xl space-y-8">
-			<div class="flex flex-col gap-2">
-				<p class="text-sm uppercase tracking-[0.4em] text-amber-400">
-					Video
-				</p>
-				<h2 class="text-3xl font-family-sancreek">Proof of Life</h2>
-			</div>
-			<div class="grid gap-6 md:grid-cols-3">
-				{
-					videos.map((video) => (
-						<div class="rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur">
-							<div class="aspect-video overflow-hidden rounded-2xl">
-								<iframe
-									src={video.url}
-									title={video.title}
-									loading="lazy"
-									class="h-full w-full"
-									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-									allowfullscreen
-								/>
-							</div>
-							<div class="mt-4">
-								<p class="text-lg font-semibold">
-									{video.title}
-								</p>
-								<p class="text-xs uppercase tracking-[0.3em] text-white/60">
-									{video.type}
-								</p>
-							</div>
-						</div>
-					))
-				}
-			</div>
-		</div>
-	</section>
-
-	<section id="photos" class="bg-black px-6 py-16 text-white lg:px-12">
-		<div class="mx-auto max-w-6xl space-y-10">
-			<div class="flex flex-col gap-2">
-				<p class="text-sm uppercase tracking-[0.4em] text-amber-400">
-					Photos
-				</p>
-				<h2 class="text-3xl font-family-sancreek">
-					Press-Ready Visuals
-				</h2>
-			</div>
-			<div class="grid gap-8 lg:grid-cols-2" id="assets">
-				<div class="rounded-3xl border border-white/10 bg-white/5 p-6">
-					<h3 class="text-2xl font-family-chelsea">Press Photos</h3>
-					<div class="mt-4 grid gap-4 sm:grid-cols-2">
-						{
-							photos.press.map((img, i) => (
-								<div class="overflow-hidden rounded-2xl">
-									<img
-										src={img}
-										alt={`Press photo ${i + 1}`}
-										class="h-48 w-full object-cover"
-									/>
-								</div>
-							))
-						}
-					</div>
-					<a
-						class="btn btn-outline btn-sm mt-6 rounded-full w-full"
-						href="#downloads"
-					>
-						Download hi-res set
-					</a>
-				</div>
-				<div class="rounded-3xl border border-white/10 bg-white/5 p-6">
-					<h3 class="text-2xl font-family-chelsea">Live Photos</h3>
-					<div class="mt-4 grid gap-4 sm:grid-cols-2">
-						{
-							photos.live.map((img, i) => (
-								<div class="overflow-hidden rounded-2xl">
-									<img
-										src={img}
-										alt={`Live photo ${i + 1}`}
-										class="h-48 w-full object-cover"
-									/>
-								</div>
-							))
-						}
-					</div>
-					<a
-						class="btn btn-outline btn-sm mt-6 rounded-full w-full"
-						href="#downloads"
-					>
-						Download live set
-					</a>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section class="bg-black px-6 py-16 text-white lg:px-12">
-		<div class="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
-			<div class="rounded-3xl border border-white/10 bg-white/5 p-8">
-				<p class="text-sm uppercase tracking-[0.4em] text-amber-400">
-					Notable Moments
-				</p>
-				<ul class="mt-4 list-disc space-y-3 pl-5 text-base leading-7">
-					{achievements.map((item) => <li>{item}</li>)}
-				</ul>
-			</div>
-			<div class="rounded-3xl border border-white/10 bg-white/5 p-8">
-				<p class="text-sm uppercase tracking-[0.4em] text-amber-400">
-					Live Performance
-				</p>
-				<div class="mt-4 space-y-4 text-base leading-7">
-					<p>
-						<strong>Typical Draw:</strong>
-						{liveInfo.draw}
-					</p>
-					<p>
-						<strong>Top Cities:</strong>
-						{liveInfo.cities.join(" • ")}
-					</p>
-					<p>
-						<strong>Notable Venues:</strong>
-						{liveInfo.venues.join(", ")}
-					</p>
-					<p>
-						<strong>Availability:</strong>
-						{liveInfo.availability}
-					</p>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section id="downloads" class="bg-black px-6 py-16 text-white lg:px-12">
-		<div class="mx-auto max-w-6xl space-y-8">
-			<div class="flex flex-col gap-2">
-				<p class="text-sm uppercase tracking-[0.4em] text-amber-400">
-					Rider & Stage Plot
-				</p>
-				<h2 class="text-3xl font-family-sancreek">
-					Ready For Your Stage
-				</h2>
-				<p class="text-white/70">
-					Four-piece core with auxiliary percussion and tracks. Fits
-					most mid-size stages with minimal changeover.
-				</p>
-			</div>
-			<div class="grid gap-4 md:grid-cols-2">
-				{
-					riderLinks.map((doc) => (
+					[
+						{ href: "#bio", label: "Bio" },
+						{ href: "#music", label: "Music" },
+						{ href: "#photos", label: "Photos" },
+						{ href: "#live", label: "Live" },
+						{ href: "#contact", label: "Contact" },
+					].map((link) => (
 						<a
-							href={doc.href}
-							class="flex items-center justify-between rounded-3xl border border-white/10 bg-white/5 px-6 py-5 text-lg transition hover:bg-white/10"
+							href={link.href}
+							class="flex-shrink-0 text-xs font-semibold tracking-[0.16em] uppercase text-white/40 hover:text-[#f0ece4] transition-colors duration-150 pb-1 border-b border-transparent hover:border-[#c8922a]"
 						>
-							<span class="font-family-chelsea">{doc.label}</span>
-							<span class="text-sm uppercase tracking-[0.3em] text-white/60">
-								PDF
-							</span>
+							{link.label}
 						</a>
 					))
 				}
+			</nav>
+		</div>
+	</div>
+
+	<!-- ─── Bio ───────────────────────────────────────────────────────────── -->
+	<section id="bio" class="bg-[#080808]">
+		<div class="max-w-7xl mx-auto px-6 lg:px-10 py-24 md:py-32">
+			<p
+				class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-4"
+			>
+				Biography
+			</p>
+			<div class="w-10 h-px bg-[#c8922a] mb-16"></div>
+
+			<div
+				class="grid md:grid-cols-[2fr_1fr] gap-12 lg:gap-20 items-start"
+			>
+				<!-- Bio text -->
+				<div class="space-y-8">
+					<p
+						class="text-xl md:text-2xl text-[#f0ece4] leading-relaxed font-light italic"
+					>
+						{bioShort}
+					</p>
+					<div class="w-10 h-px bg-white/12"></div>
+					{
+						bioLong
+							.split("\n\n")
+							.map((para) => (
+								<p class="text-base text-white/65 leading-relaxed">
+									{para}
+								</p>
+							))
+					}
+					<div class="pt-4 flex flex-wrap gap-4">
+						<a
+							href="/docs/HH_One_Sheet_2025.pdf"
+							download
+							class="inline-flex items-center justify-center text-[0.8125rem] font-semibold tracking-[0.12em] uppercase px-9 py-3.5 bg-[#c8922a] text-[#080808] border border-[#c8922a] hover:bg-[#a87520] hover:border-[#a87520] transition-colors duration-150"
+						>
+							Download One Sheet
+						</a>
+						<a
+							href="#contact"
+							class="inline-flex items-center justify-center text-[0.8125rem] font-semibold tracking-[0.12em] uppercase px-9 py-3.5 bg-transparent text-[#f0ece4] border border-white/30 hover:bg-white/6 hover:border-white/55 transition-colors duration-150"
+						>
+							Contact / Booking
+						</a>
+					</div>
+				</div>
+
+				<!-- Quick stats sidebar -->
+				<div class="border border-white/8 bg-[#111111]">
+					<div
+						class="h-px w-full bg-gradient-to-r from-[#c8922a] via-[#c8922a]/40 to-transparent"
+					>
+					</div>
+					<div class="p-8 space-y-6">
+						<p
+							class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a]"
+						>
+							Quick Facts
+						</p>
+						<ul class="space-y-4">
+							{
+								[
+									{ key: "Hometown", val: "Tampa, FL" },
+									{
+										key: "Genre",
+										val: "Heavy Southern Rock",
+									},
+									{ key: "Active Since", val: "2024" },
+									{ key: "Status", val: "Independent" },
+									{
+										key: "Debut Single",
+										val: "Lucid Vision — 2026",
+									},
+								].map((item) => (
+									<li class="flex flex-col gap-0.5">
+										<span class="text-[10px] font-semibold tracking-[0.18em] uppercase text-white/30">
+											{item.key}
+										</span>
+										<span class="text-sm text-white/80 font-medium">
+											{item.val}
+										</span>
+									</li>
+								))
+							}
+						</ul>
+						<div class="pt-4 border-t border-white/8">
+							<p
+								class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-4"
+							>
+								Follow
+							</p>
+							<div class="flex flex-wrap gap-2">
+								{
+									socials.map((s) => (
+										<a
+											href={s.href}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="text-xs font-semibold tracking-wide text-white/45 hover:text-[#c8922a] transition-colors duration-150 border border-white/10 px-3 py-1.5 hover:border-[#c8922a]/50"
+										>
+											{s.label}
+										</a>
+									))
+								}
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
 
-	<section id="contact" class="bg-black px-6 py-16 text-white lg:px-12">
-		<div class="mx-auto max-w-6xl space-y-8">
-			<div class="flex flex-col gap-2">
-				<p class="text-sm uppercase tracking-[0.4em] text-amber-400">
-					Contact & Booking
-				</p>
-				<h2 class="text-3xl font-family-sancreek">Talk To The Band</h2>
-				<p class="text-white/70">
-					We respond within 24 hours. Text line available for urgent
-					routing holds.
-				</p>
+	<!-- ─── Music ─────────────────────────────────────────────────────────── -->
+	<section id="music" class="bg-[#111111] border-t border-white/8">
+		<div class="max-w-7xl mx-auto px-6 lg:px-10 py-24 md:py-32">
+			<p
+				class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-4"
+			>
+				Music
+			</p>
+			<div class="w-10 h-px bg-[#c8922a] mb-16"></div>
+
+			<div
+				class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/8 border border-white/8"
+			>
+				{
+					tracks.map((track) => (
+						<div class="bg-[#111111] p-8 flex flex-col gap-4">
+							<div>
+								<p
+									class="text-5xl sm:text-6xl leading-none tracking-wide text-[#f0ece4]"
+									style="font-family: 'Bebas Neue', Impact, sans-serif;"
+								>
+									{track.title}
+								</p>
+								<p class="mt-2 text-xs font-semibold tracking-[0.18em] uppercase text-white/35">
+									{track.release}
+									{track.explicit ? " · Explicit" : ""}
+								</p>
+							</div>
+							<div class="flex-1" />
+							<div class="flex flex-wrap gap-3 pt-4 border-t border-white/8">
+								<span class="inline-flex items-center justify-center text-[0.6875rem] font-semibold tracking-[0.12em] uppercase px-5 py-2 bg-transparent text-white/40 border border-white/20 opacity-40 cursor-not-allowed pointer-events-none">
+									Stream — Coming Soon
+								</span>
+							</div>
+						</div>
+					))
+				}
+				<!-- Coming soon placeholder -->
+				<div
+					class="bg-[#111111] p-8 flex flex-col justify-center items-center text-center min-h-[200px]"
+				>
+					<p
+						class="text-white/18 text-4xl leading-none tracking-wide"
+						style="font-family: 'Bebas Neue', Impact, sans-serif;"
+					>
+						More Coming<br />Soon
+					</p>
+				</div>
 			</div>
-			<div class="grid gap-6 md:grid-cols-3">
+		</div>
+	</section>
+
+	<!-- ─── Photos ────────────────────────────────────────────────────────── -->
+	<section id="photos" class="bg-[#080808] border-t border-white/8">
+		<div class="max-w-7xl mx-auto px-6 lg:px-10 py-24 md:py-32">
+			<div
+				class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16"
+			>
+				<div>
+					<p
+						class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-4"
+					>
+						Press Photos
+					</p>
+					<div class="w-10 h-px bg-[#c8922a] mb-6"></div>
+					<h2
+						class="text-5xl sm:text-6xl md:text-7xl leading-none tracking-wide text-[#f0ece4]"
+						style="font-family: 'Bebas Neue', Impact, sans-serif;"
+					>
+						Press-Ready<br />Visuals
+					</h2>
+				</div>
+				<a
+					href="#contact"
+					class="inline-flex items-center justify-center flex-shrink-0 text-[0.8125rem] font-semibold tracking-[0.12em] uppercase px-9 py-3.5 bg-transparent text-[#f0ece4] border border-white/30 hover:bg-white/6 hover:border-white/55 transition-colors duration-150"
+				>
+					Request Hi-Res Files
+				</a>
+			</div>
+
+			<div
+				class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/8 border border-white/8"
+			>
+				{
+					photos.map((img, i) => (
+						<button
+							type="button"
+							data-lightbox-index={i}
+							class="overflow-hidden bg-[#111111] aspect-square group cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-[#c8922a] focus:ring-inset"
+						>
+							<img
+								src={img}
+								alt={`Homesick Highway press photo ${i + 1}`}
+								class="w-full h-full object-cover object-center grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+							/>
+						</button>
+					))
+				}
+			</div>
+
+			<!-- Lightbox -->
+			<div
+				id="lightbox"
+				class="fixed inset-0 z-50 hidden items-center justify-center bg-black/92 backdrop-blur-sm"
+				role="dialog"
+				aria-modal="true"
+				aria-label="Photo lightbox"
+			>
+				<!-- Close -->
+				<button
+					id="lightbox-close"
+					type="button"
+					aria-label="Close lightbox"
+					class="absolute top-5 right-5 text-white/50 hover:text-white transition-colors duration-150 focus:outline-none"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="w-8 h-8"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+						stroke-width="1.5"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M6 18L18 6M6 6l12 12"></path>
+					</svg>
+				</button>
+
+				<!-- Prev -->
+				<button
+					id="lightbox-prev"
+					type="button"
+					aria-label="Previous photo"
+					class="absolute left-3 sm:left-6 text-white/50 hover:text-white transition-colors duration-150 focus:outline-none"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="w-9 h-9"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+						stroke-width="1.5"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M15.75 19.5L8.25 12l7.5-7.5"></path>
+					</svg>
+				</button>
+
+				<!-- Image -->
+				<div
+					class="flex flex-col items-center gap-4 px-16 max-w-5xl w-full"
+				>
+					<img
+						id="lightbox-img"
+						src=""
+						alt=""
+						class="max-h-[80vh] max-w-full object-contain shadow-2xl"
+					/>
+					<p
+						id="lightbox-counter"
+						class="text-xs font-semibold tracking-[0.18em] uppercase text-white/30"
+					>
+					</p>
+				</div>
+
+				<!-- Next -->
+				<button
+					id="lightbox-next"
+					type="button"
+					aria-label="Next photo"
+					class="absolute right-3 sm:right-6 text-white/50 hover:text-white transition-colors duration-150 focus:outline-none"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="w-9 h-9"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+						stroke-width="1.5"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+					</svg>
+				</button>
+			</div>
+
+			<p class="mt-6 text-xs text-white/25 tracking-wide">
+				Photos available for editorial use. Contact
+				press@homesickhighway.com for hi-res downloads.
+			</p>
+		</div>
+	</section>
+
+	<script>
+		const photos: string[] = Array.from(
+			document.querySelectorAll<HTMLButtonElement>(
+				"[data-lightbox-index]",
+			),
+		).map((btn) => (btn.querySelector("img") as HTMLImageElement).src);
+
+		const lightbox = document.getElementById("lightbox")!;
+		const lightboxImg = document.getElementById(
+			"lightbox-img",
+		) as HTMLImageElement;
+		const lightboxCounter = document.getElementById("lightbox-counter")!;
+		const closeBtn = document.getElementById("lightbox-close")!;
+		const prevBtn = document.getElementById("lightbox-prev")!;
+		const nextBtn = document.getElementById("lightbox-next")!;
+
+		let current = 0;
+
+		function openLightbox(index: number) {
+			current = index;
+			showPhoto();
+			lightbox.classList.remove("hidden");
+			lightbox.classList.add("flex");
+			document.body.style.overflow = "hidden";
+			lightboxImg.focus();
+		}
+
+		function closeLightbox() {
+			lightbox.classList.add("hidden");
+			lightbox.classList.remove("flex");
+			document.body.style.overflow = "";
+		}
+
+		function showPhoto() {
+			lightboxImg.src = photos[current];
+			lightboxImg.alt = `Homesick Highway press photo ${current + 1}`;
+			lightboxCounter.textContent = `${current + 1} / ${photos.length}`;
+		}
+
+		function prev() {
+			current = (current - 1 + photos.length) % photos.length;
+			showPhoto();
+		}
+
+		function next() {
+			current = (current + 1) % photos.length;
+			showPhoto();
+		}
+
+		// Open on grid click
+		document
+			.querySelectorAll<HTMLButtonElement>("[data-lightbox-index]")
+			.forEach((btn) => {
+				btn.addEventListener("click", () => {
+					openLightbox(Number(btn.dataset.lightboxIndex));
+				});
+			});
+
+		closeBtn.addEventListener("click", closeLightbox);
+		prevBtn.addEventListener("click", prev);
+		nextBtn.addEventListener("click", next);
+
+		// Close on backdrop click
+		lightbox.addEventListener("click", (e) => {
+			if (e.target === lightbox) closeLightbox();
+		});
+
+		// Keyboard navigation
+		document.addEventListener("keydown", (e) => {
+			if (lightbox.classList.contains("hidden")) return;
+			if (e.key === "Escape") closeLightbox();
+			if (e.key === "ArrowLeft") prev();
+			if (e.key === "ArrowRight") next();
+		});
+	</script>
+
+	<!-- ─── Live / Achievements ───────────────────────────────────────────── -->
+	<section id="live" class="bg-[#111111] border-t border-white/8">
+		<div class="max-w-7xl mx-auto px-6 lg:px-10 py-24 md:py-32">
+			<p
+				class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-4"
+			>
+				Live Performance
+			</p>
+			<div class="w-10 h-px bg-[#c8922a] mb-16"></div>
+
+			<div
+				class="grid md:grid-cols-2 gap-px bg-white/8 border border-white/8"
+			>
+				<!-- Notable moments -->
+				<div class="bg-[#111111] p-8 md:p-10">
+					<p
+						class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-8"
+					>
+						Notable Moments
+					</p>
+					<ul class="space-y-6">
+						{
+							achievements.map((item) => (
+								<li class="flex gap-4 items-start">
+									<span class="mt-2 block w-1.5 h-1.5 flex-shrink-0 bg-[#c8922a]" />
+									<p class="text-sm text-white/65 leading-relaxed">
+										{item}
+									</p>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+
+				<!-- Live info -->
+				<div class="bg-[#111111] p-8 md:p-10">
+					<p
+						class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-8"
+					>
+						Live Details
+					</p>
+					<div class="space-y-8">
+						{
+							[
+								{ key: "Typical Draw", val: liveInfo.draw },
+								{
+									key: "Top Cities",
+									val: liveInfo.cities.join(" · "),
+								},
+								{
+									key: "Notable Venues",
+									val: liveInfo.venues.join(", "),
+								},
+								{
+									key: "Availability",
+									val: liveInfo.availability,
+								},
+							].map((item) => (
+								<div>
+									<p class="text-[10px] font-semibold tracking-[0.18em] uppercase text-white/30 mb-1">
+										{item.key}
+									</p>
+									<p class="text-sm text-white/75">
+										{item.val}
+									</p>
+								</div>
+							))
+						}
+					</div>
+
+					<div class="mt-10 pt-8 border-t border-white/8">
+						<p
+							class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-4"
+						>
+							Stage Requirements
+						</p>
+						<p class="text-sm text-white/50 leading-relaxed">
+							Four-piece core with auxiliary percussion and
+							tracks. Fits most mid-size stages with minimal
+							changeover.
+						</p>
+						<div class="mt-6 flex flex-wrap gap-3">
+							<a
+								href="/docs/homesick-highway-tech-rider.pdf"
+								class="inline-flex items-center justify-center text-[0.6875rem] font-semibold tracking-[0.12em] uppercase px-5 py-2.5 bg-transparent text-[#f0ece4] border border-white/30 hover:bg-white/6 hover:border-white/55 transition-colors duration-150"
+							>
+								Tech Rider (PDF)
+							</a>
+							<a
+								href="/docs/homesick-highway-stage-plot.pdf"
+								class="inline-flex items-center justify-center text-[0.6875rem] font-semibold tracking-[0.12em] uppercase px-5 py-2.5 bg-transparent text-[#f0ece4] border border-white/30 hover:bg-white/6 hover:border-white/55 transition-colors duration-150"
+							>
+								Stage Plot (PDF)
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ─── Contact ───────────────────────────────────────────────────────── -->
+	<section id="contact" class="bg-[#080808] border-t border-white/8">
+		<div class="max-w-7xl mx-auto px-6 lg:px-10 py-24 md:py-32">
+			<p
+				class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-4"
+			>
+				Contact & Booking
+			</p>
+			<div class="w-10 h-px bg-[#c8922a] mb-6"></div>
+			<h2
+				class="text-5xl sm:text-6xl md:text-7xl leading-none tracking-wide text-[#f0ece4] mb-4"
+				style="font-family: 'Bebas Neue', Impact, sans-serif;"
+			>
+				Talk to the Band
+			</h2>
+			<p class="text-white/45 text-base mb-16 max-w-md">
+				We respond within 24 hours. Text line available for urgent
+				routing holds.
+			</p>
+
+			<div
+				class="grid sm:grid-cols-3 gap-px bg-white/8 border border-white/8 mb-12"
+			>
 				{
 					contacts.map((contact) => (
-						<div class="rounded-3xl border border-white/10 bg-white/5 p-6">
-							<p class="text-sm uppercase tracking-[0.3em] text-amber-300">
+						<div class="bg-[#111111] p-8">
+							<p class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-4">
 								{contact.type}
 							</p>
-							<p class="mt-2 text-2xl font-family-chelsea">
-								{contact.person}
-							</p>
+							{contact.person && (
+								<p class="text-sm text-white/50 mb-3">
+									{contact.person}
+								</p>
+							)}
 							<a
-								class="mt-4 block text-lg underline"
 								href={`mailto:${contact.email}`}
+								class="text-base text-[#f0ece4] hover:text-[#c8922a] transition-colors duration-150 break-all"
 							>
 								{contact.email}
 							</a>
-							<p class="text-sm text-white/60">{contact.phone}</p>
 						</div>
 					))
 				}
 			</div>
+
 			<div class="flex flex-wrap gap-3">
 				{
-					socials.map((social) => (
+					socials.map((s) => (
 						<a
-							class="btn btn-outline btn-sm rounded-full"
-							href={social.href}
+							href={s.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex items-center justify-center text-[0.6875rem] font-semibold tracking-[0.12em] uppercase px-5 py-2.5 bg-transparent text-white/50 border border-white/10 hover:text-[#f0ece4] hover:border-white/25 transition-colors duration-150"
 						>
-							{social.label}
+							{s.label}
 						</a>
 					))
 				}

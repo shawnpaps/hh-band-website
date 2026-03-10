@@ -2,25 +2,67 @@
 import EmailListSubscribe from "./EmailListSubscribe.astro";
 ---
 
-<div>
-	<div
-		class="hero min-h-screen relative"
-		style='background-image: url("https://hh-marketing-website.s3.us-east-2.amazonaws.com/HH_Promos+(11+of+37).jpg"); background-position: center 20%;'
-	>
-		<div class="hero-overlay bg-black/60"></div>
-		<div class="text-center text-white mt-24 px-4">
-			<h1
-				class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-family-sancreek"
-			>
-				This Rest Stop is Under Construction.
-			</h1>
-			<p
-				class="mt-4 text-lg sm:text-xl md:text-2xl italic font-family-chelsea max-w-3xl mx-auto"
-			>
-				No Merch Yet. In the meantime, join our community to get the
-				latest updates from Homesick Highway
-			</p>
-			<EmailListSubscribe />
+<div class="relative overflow-hidden">
+	<!-- Background image with heavy overlay -->
+	<div class="absolute inset-0">
+		<img
+			src="https://hh-marketing-website.s3.us-east-2.amazonaws.com/HH_Promos+(11+of+37).jpg"
+			alt=""
+			class="w-full h-full object-cover object-center"
+			aria-hidden="true"
+		/>
+		<div class="absolute inset-0 bg-[#080808]/80"></div>
+		<div
+			class="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-[#080808]/60"
+		>
 		</div>
+	</div>
+
+	<!-- Content -->
+	<div
+		class="relative z-10 max-w-2xl mx-auto px-6 lg:px-10 py-32 md:py-40 text-center"
+	>
+		<!-- Icon -->
+		<div class="flex justify-center mb-8">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="36"
+				height="36"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="#c8922a"
+				stroke-width="1.25"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				aria-hidden="true"
+			>
+				<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
+				></path>
+				<line x1="3" y1="6" x2="21" y2="6"></line>
+				<path d="M16 10a4 4 0 0 1-8 0"></path>
+			</svg>
+		</div>
+
+		<p
+			class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-5"
+		>
+			Store
+		</p>
+
+		<h3
+			class="text-5xl sm:text-6xl md:text-7xl leading-none tracking-wide text-[#f0ece4] mb-6"
+			style="font-family: 'Bebas Neue', Impact, sans-serif;"
+		>
+			This Rest Stop is<br />Under Construction
+		</h3>
+
+		<p
+			class="text-[rgba(240,236,228,0.5)] text-base leading-relaxed mb-12 max-w-md mx-auto"
+		>
+			No merch yet. In the meantime, join our community to get the latest
+			updates from Homesick Highway — first dibs on drops when they land.
+		</p>
+
+		<EmailListSubscribe />
 	</div>
 </div>
