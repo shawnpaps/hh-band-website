@@ -16,7 +16,12 @@ const artistName = "Homesick Highway";
 			<p class="text-xs uppercase tracking-[0.4em] text-black/60">
 				Now Playing
 			</p>
-			<p class="font-family-danfo text-2xl leading-tight">{trackTitle}</p>
+			<p
+				class="text-2xl leading-tight"
+				style="font-family: 'Bebas Neue', Impact, sans-serif;"
+			>
+				{trackTitle}
+			</p>
 			<p class="text-sm text-black/70">{artistName}</p>
 			<p class="sr-only" data-lucid-vision-status aria-live="polite">
 				Paused
@@ -24,7 +29,7 @@ const artistName = "Homesick Highway";
 		</div>
 		<button
 			type="button"
-			class="lucid-vision-toggle btn btn-circle btn-lg border-black/20 bg-black text-white"
+			class="lucid-vision-toggle size-14 rounded-full flex items-center justify-center bg-black text-white border border-black/20 hover:bg-zinc-800 transition-colors duration-150 cursor-pointer"
 			data-lucid-vision-toggle
 			data-state="paused"
 			aria-pressed="false"
@@ -94,14 +99,6 @@ const artistName = "Homesick Highway";
 </script>
 
 <style>
-	.lucid-vision-player {
-		font-family:
-			"Chelsea Market",
-			system-ui,
-			-apple-system,
-			BlinkMacSystemFont,
-			sans-serif;
-	}
 	.lucid-vision-player .lucid-vision-toggle[data-state="playing"] {
 		background-color: #f97316;
 		border-color: transparent;

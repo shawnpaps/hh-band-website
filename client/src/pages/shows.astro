@@ -9,39 +9,178 @@ import Hero from "../components/Hero.astro";
 	description="Catch Homesick Highway live! Tampa's premier hard rock, country, and metal band. Get tickets to upcoming Florida concerts and tour dates. High-energy performances across the Sunshine State."
 	keywords="Homesick Highway shows, Tampa concerts, Florida rock concerts, hard rock shows Tampa, metal concerts Florida, live music Tampa, Tampa Bay concerts, rock band tour dates, Florida music venues, Tampa rock shows"
 >
+	<!-- ─── Hero ──────────────────────────────────────────────────────────── -->
 	<Hero
-		heroText="SHOWS"
+		heroText="Shows"
 		heroImageUrl="https://hh-marketing-website.s3.us-east-2.amazonaws.com/HH_Promos+(18+of+37).jpg"
+		subText="Live dates and tour announcements"
 	/>
-	<section
-		id="shows"
-		class="min-h-screen pt-40 pb-24 px-6 md:px-10 bg-gradient-to-b from-base-200/40 via-base-200/10 to-base-300/40 flex flex-col gap-16"
-	>
-		<div class="max-w-4xl px-4">
-			<p
-				class="uppercase tracking-[0.2em] sm:tracking-[0.3em] text-xs sm:text-sm text-amber-500 font-semibold mb-3"
+
+	<!-- ─── Tour Log ──────────────────────────────────────────────────────── -->
+	<section class="bg-[#080808]">
+		<div class="max-w-7xl mx-auto px-6 lg:px-10 py-24 md:py-32">
+			<div
+				class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16"
 			>
-				tour log
-			</p>
-			<h1
-				class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-family-danfo leading-tight"
-			>
-				Upcoming Shows
-			</h1>
+				<div>
+					<p
+						class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-4"
+					>
+						Tour Log
+					</p>
+					<div class="w-10 h-px bg-[#c8922a] mb-6"></div>
+					<h1
+						class="text-6xl sm:text-7xl md:text-8xl leading-none tracking-wide text-[#f0ece4]"
+						style="font-family: 'Bebas Neue', Impact, sans-serif;"
+					>
+						Upcoming Shows
+					</h1>
+				</div>
+			</div>
+
+			<!-- Empty state card -->
+			<div class="border border-white/8 bg-[#111111]">
+				<div
+					class="h-px w-full bg-gradient-to-r from-[#c8922a] via-[#c8922a]/40 to-transparent"
+				>
+				</div>
+
+				<div
+					class="px-8 md:px-12 py-20 md:py-28 flex flex-col md:flex-row md:items-center gap-12 md:gap-20"
+				>
+					<!-- Left: icon + text -->
+					<div class="flex-1">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="32"
+							height="32"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="#c8922a"
+							stroke-width="1.25"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="mb-6"
+							aria-hidden="true"
+						>
+							<rect
+								x="3"
+								y="4"
+								width="18"
+								height="18"
+								rx="2"
+								ry="2"></rect>
+							<line x1="16" y1="2" x2="16" y2="6"></line>
+							<line x1="8" y1="2" x2="8" y2="6"></line>
+							<line x1="3" y1="10" x2="21" y2="10"></line>
+						</svg>
+
+						<h2
+							class="text-4xl sm:text-5xl leading-none tracking-wide text-[#f0ece4] mb-4"
+							style="font-family: 'Bebas Neue', Impact, sans-serif;"
+						>
+							Nothing to see here yet
+						</h2>
+						<p
+							class="text-white/50 text-base leading-relaxed max-w-md"
+						>
+							Sign up for the official Homesick Highway email list
+							to be the first to know when we announce new shows
+							and tour dates.
+						</p>
+					</div>
+
+					<!-- Right: subscribe form -->
+					<div class="flex-shrink-0 w-full md:max-w-sm">
+						<p
+							class="text-xs font-semibold tracking-[0.18em] uppercase text-white/35 mb-4"
+						>
+							Get notified
+						</p>
+						<EmailListSubscribe />
+					</div>
+				</div>
+			</div>
 		</div>
-		<div id="show-card-list	" class="flex flex-col gap-10 px-4">
-			<div class="card bg-base-100 shadow-xl">
-				<div class="card-body p-4 sm:p-6 md:p-8">
-					<h2 class="card-title text-2xl sm:text-3xl md:text-4xl">
-						Nothing to see here yet
+	</section>
+
+	<!-- ─── On the Road ───────────────────────────────────────────────────── -->
+	<section class="bg-[#111111] border-t border-white/8">
+		<div class="max-w-7xl mx-auto px-6 lg:px-10 py-24 md:py-32">
+			<p
+				class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-4"
+			>
+				On the Road
+			</p>
+			<div class="w-10 h-px bg-[#c8922a] mb-12"></div>
+
+			<div
+				class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/8 border border-white/8"
+			>
+				{
+					[].map((show) => (
+						<div class="bg-[#111111] p-8 group">
+							<p class="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#c8922a] mb-4">
+								{show.status}
+							</p>
+							<p
+								class="text-3xl md:text-4xl leading-none tracking-wide text-[#f0ece4] mb-2 group-hover:text-[#c8922a] transition-colors duration-150"
+								style="font-family: 'Bebas Neue', Impact, sans-serif;"
+							>
+								{show.venue}
+							</p>
+							<p class="text-sm text-white/40 mb-1">
+								{show.city}
+							</p>
+							<p class="text-xs tracking-widest uppercase text-white/25">
+								{show.date}
+							</p>
+						</div>
+					))
+				}
+			</div>
+
+			<p class="mt-8 text-xs text-white/25 tracking-wide">
+				Dates subject to change. Follow us on social for the latest
+				announcements.
+			</p>
+		</div>
+	</section>
+
+	<!-- ─── Booking CTA ───────────────────────────────────────────────────── -->
+	<section class="bg-[#080808] border-t border-white/8">
+		<div class="max-w-7xl mx-auto px-6 lg:px-10 py-24 md:py-32">
+			<div
+				class="flex flex-col md:flex-row md:items-end justify-between gap-10"
+			>
+				<div>
+					<p
+						class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-4"
+					>
+						Booking
+					</p>
+					<div class="w-10 h-px bg-[#c8922a] mb-6"></div>
+					<h2
+						class="text-5xl sm:text-6xl md:text-7xl leading-none tracking-wide text-[#f0ece4]"
+						style="font-family: 'Bebas Neue', Impact, sans-serif;"
+					>
+						Want us on<br />your stage?
 					</h2>
-					<p class="text-base sm:text-lg italic font-light">
-						Sign up for the official Homesick Highway email list to
-						be the first to know when we announce new shows and tour
-						dates.
+					<p
+						class="mt-6 text-white/50 text-base leading-relaxed max-w-md"
+					>
+						We respond within 24 hours. Routing Spring &amp; Summer
+						2026 across the Southeast and Texas.
 					</p>
 				</div>
-				<EmailListSubscribe />
+				<div class="flex-shrink-0">
+					<a
+						href="mailto:booking@homesickhighway.com"
+						class="inline-flex items-center justify-center text-[0.8125rem] font-semibold tracking-[0.12em] uppercase px-9 py-3.5 bg-[#c8922a] text-[#080808] border border-[#c8922a] hover:bg-[#a87520] hover:border-[#a87520] transition-colors duration-150"
+					>
+						booking@homesickhighway.com
+					</a>
+				</div>
 			</div>
 		</div>
 	</section>

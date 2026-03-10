@@ -1,0 +1,342 @@
+<!-- ─── Chatbot FAB + Modal ───────────────────────────────────────────────── --><!-- FAB -->
+<button
+	id="chat-fab"
+	type="button"
+	aria-label="Chat with us"
+	class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#c8922a] text-[#080808] shadow-lg hover:bg-[#a87520] active:scale-95 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#c8922a] focus:ring-offset-2 focus:ring-offset-[#080808]"
+>
+	<!-- Chat icon -->
+	<svg
+		id="fab-icon-chat"
+		xmlns="http://www.w3.org/2000/svg"
+		class="w-6 h-6"
+		fill="none"
+		viewBox="0 0 24 24"
+		stroke="currentColor"
+		stroke-width="2"
+	>
+		<path
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-4 4v-4z"
+		></path>
+	</svg>
+	<!-- Close icon (hidden by default) -->
+	<svg
+		id="fab-icon-close"
+		xmlns="http://www.w3.org/2000/svg"
+		class="w-6 h-6 hidden"
+		fill="none"
+		viewBox="0 0 24 24"
+		stroke="currentColor"
+		stroke-width="2"
+	>
+		<path
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			d="M6 18L18 6M6 6l12 12"></path>
+	</svg>
+</button>
+
+<!-- Modal -->
+<div
+	id="chat-modal"
+	class="fixed bottom-24 right-6 z-50 hidden flex-col w-[calc(100vw-3rem)] max-w-sm h-[520px] bg-[#111111] border border-white/10 shadow-2xl overflow-hidden"
+	role="dialog"
+	aria-modal="true"
+	aria-label="Homesick Highway chat"
+>
+	<!-- Header -->
+	<div
+		class="flex-shrink-0 flex items-center gap-3 px-5 py-4 border-b border-white/8 bg-[#0d0d0d]"
+	>
+		<div class="relative flex-shrink-0">
+			<div
+				class="w-8 h-8 bg-[#c8922a] flex items-center justify-center text-[#080808] text-xs font-bold tracking-wider"
+				style="font-family: 'Bebas Neue', Impact, sans-serif;"
+			>
+				HH
+			</div>
+			<span
+				class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-[#0d0d0d]"
+			></span>
+		</div>
+		<div class="flex-1 min-w-0">
+			<p
+				class="text-sm font-semibold text-[#f0ece4] leading-none tracking-wide"
+				style="font-family: 'Bebas Neue', Impact, sans-serif; letter-spacing: 0.1em;"
+			>
+				Homesick Highway
+			</p>
+			<p class="text-[10px] text-white/35 tracking-wide mt-0.5">
+				Ask us anything
+			</p>
+		</div>
+		<button
+			id="chat-close-btn"
+			type="button"
+			aria-label="Close chat"
+			class="text-white/30 hover:text-white/70 transition-colors duration-150 focus:outline-none"
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="w-5 h-5"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke="currentColor"
+				stroke-width="1.5"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M6 18L18 6M6 6l12 12"></path>
+			</svg>
+		</button>
+	</div>
+
+	<!-- Gold accent line -->
+	<div
+		class="h-px w-full bg-gradient-to-r from-[#c8922a] via-[#c8922a]/40 to-transparent flex-shrink-0"
+	>
+	</div>
+
+	<!-- Messages -->
+	<div
+		id="chat-messages"
+		class="flex-1 overflow-y-auto px-4 py-4 space-y-4 scroll-smooth"
+	>
+		<!-- Welcome message injected by JS -->
+	</div>
+
+	<!-- Audio player (hidden until easter egg triggered) -->
+	<div
+		id="chat-audio-container"
+		class="hidden flex-shrink-0 mx-4 mb-3 border border-[#c8922a]/30 bg-[#0d0d0d] p-3"
+	>
+		<p
+			id="chat-audio-label"
+			class="text-[10px] font-semibold tracking-[0.16em] uppercase text-[#c8922a] mb-2"
+		>
+		</p>
+		<audio
+			id="chat-audio-player"
+			controls
+			class="w-full h-8"
+			style="accent-color: #c8922a;"
+		>
+		</audio>
+	</div>
+
+	<!-- Input -->
+	<div
+		class="flex-shrink-0 border-t border-white/8 bg-[#0d0d0d] px-3 py-3 flex items-end gap-2"
+	>
+		<textarea
+			id="chat-input"
+			rows="1"
+			placeholder="Ask about shows, music, the band..."
+			class="flex-1 bg-[#1a1a1a] border border-white/10 text-sm text-[#f0ece4] placeholder-white/25 px-3 py-2.5 resize-none focus:outline-none focus:border-[#c8922a]/60 transition-colors duration-150 leading-snug max-h-28"
+			style="scrollbar-width: none;"></textarea>
+		<button
+			id="chat-send-btn"
+			type="button"
+			aria-label="Send message"
+			class="flex-shrink-0 flex items-center justify-center w-9 h-9 bg-[#c8922a] text-[#080808] hover:bg-[#a87520] active:scale-95 transition-all duration-150 focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none"
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="w-4 h-4"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke="currentColor"
+				stroke-width="2.5"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
+				></path>
+			</svg>
+		</button>
+	</div>
+</div>
+
+<script>
+	// ── Elements ────────────────────────────────────────────────────────────
+	const fab = document.getElementById("chat-fab")!;
+	const fabIconChat = document.getElementById("fab-icon-chat")!;
+	const fabIconClose = document.getElementById("fab-icon-close")!;
+	const modal = document.getElementById("chat-modal")!;
+	const closeBtn = document.getElementById("chat-close-btn")!;
+	const messagesEl = document.getElementById("chat-messages")!;
+	const input = document.getElementById("chat-input") as HTMLTextAreaElement;
+	const sendBtn = document.getElementById(
+		"chat-send-btn",
+	) as HTMLButtonElement;
+	const audioContainer = document.getElementById("chat-audio-container")!;
+	const audioLabel = document.getElementById("chat-audio-label")!;
+	const audioPlayer = document.getElementById(
+		"chat-audio-player",
+	) as HTMLAudioElement;
+
+	// ── State ───────────────────────────────────────────────────────────────
+	type Message = { role: "user" | "assistant"; content: string };
+	const history: Message[] = [];
+	let isOpen = false;
+	let isLoading = false;
+
+	// ── Open / Close ────────────────────────────────────────────────────────
+	function openChat() {
+		isOpen = true;
+		modal.classList.remove("hidden");
+		modal.classList.add("flex");
+		fabIconChat.classList.add("hidden");
+		fabIconClose.classList.remove("hidden");
+		if (history.length === 0) addWelcome();
+		setTimeout(() => input.focus(), 50);
+	}
+
+	function closeChat() {
+		isOpen = false;
+		modal.classList.add("hidden");
+		modal.classList.remove("flex");
+		fabIconChat.classList.remove("hidden");
+		fabIconClose.classList.add("hidden");
+	}
+
+	fab.addEventListener("click", () => (isOpen ? closeChat() : openChat()));
+	closeBtn.addEventListener("click", closeChat);
+
+	// ── Welcome message ─────────────────────────────────────────────────────
+	function addWelcome() {
+		appendMessage(
+			"assistant",
+			"Hey! 🤘 What's up — ask me anything about Homesick Highway. Shows, music, the band... I got you.",
+		);
+	}
+
+	// ── Render a message bubble ─────────────────────────────────────────────
+	function appendMessage(role: "user" | "assistant", text: string) {
+		const wrapper = document.createElement("div");
+		wrapper.className = `flex ${role === "user" ? "justify-end" : "justify-start"}`;
+
+		const bubble = document.createElement("div");
+		bubble.className =
+			role === "user"
+				? "max-w-[80%] bg-[#c8922a] text-[#080808] text-sm px-3.5 py-2.5 leading-snug font-medium"
+				: "max-w-[85%] bg-[#1a1a1a] border border-white/8 text-[#f0ece4] text-sm px-3.5 py-2.5 leading-snug";
+
+		bubble.textContent = text;
+		wrapper.appendChild(bubble);
+		messagesEl.appendChild(wrapper);
+		scrollToBottom();
+	}
+
+	// ── Typing indicator ────────────────────────────────────────────────────
+	function showTyping(): HTMLElement {
+		const wrapper = document.createElement("div");
+		wrapper.id = "typing-indicator";
+		wrapper.className = "flex justify-start";
+		wrapper.innerHTML = `
+			<div class="bg-[#1a1a1a] border border-white/8 px-4 py-3 flex items-center gap-1.5">
+				<span class="w-1.5 h-1.5 bg-[#c8922a] rounded-full animate-bounce" style="animation-delay:0ms"></span>
+				<span class="w-1.5 h-1.5 bg-[#c8922a] rounded-full animate-bounce" style="animation-delay:150ms"></span>
+				<span class="w-1.5 h-1.5 bg-[#c8922a] rounded-full animate-bounce" style="animation-delay:300ms"></span>
+			</div>`;
+		messagesEl.appendChild(wrapper);
+		scrollToBottom();
+		return wrapper;
+	}
+
+	function removeTyping() {
+		document.getElementById("typing-indicator")?.remove();
+	}
+
+	function scrollToBottom() {
+		messagesEl.scrollTop = messagesEl.scrollHeight;
+	}
+
+	// ── Easter egg audio detection ──────────────────────────────────────────
+	function checkForAudio(text: string) {
+		const lowerText = text.toLowerCase();
+
+		if (lowerText.includes("/music/holeinthewall.mp3")) {
+			audioLabel.textContent =
+				"🔒 Exclusive Early Listen — Hole in the Wall";
+			audioPlayer.src = "/music/holeinthewall.mp3";
+			audioContainer.classList.remove("hidden");
+			audioContainer.classList.add("flex", "flex-col");
+		} else if (lowerText.includes("/music/lucidvision.mp3")) {
+			audioLabel.textContent = "▶ Lucid Vision — Debut Single";
+			audioPlayer.src = "/music/lucidvision.mp3";
+			audioContainer.classList.remove("hidden");
+			audioContainer.classList.add("flex", "flex-col");
+		}
+	}
+
+	// ── Send a message ──────────────────────────────────────────────────────
+	async function sendMessage() {
+		const text = input.value.trim();
+		if (!text || isLoading) return;
+
+		isLoading = true;
+		sendBtn.disabled = true;
+		input.value = "";
+		autoResize();
+
+		appendMessage("user", text);
+		history.push({ role: "user", content: text });
+
+		const typingEl = showTyping();
+
+		try {
+			const res = await fetch("/api/chat", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ messages: history }),
+			});
+
+			const data = await res.json();
+			removeTyping();
+
+			if (!res.ok || !data.reply) {
+				appendMessage(
+					"assistant",
+					data.error ||
+						"Something went wrong on our end. Try again in a sec!",
+				);
+			} else {
+				appendMessage("assistant", data.reply);
+				history.push({ role: "assistant", content: data.reply });
+				checkForAudio(data.reply);
+			}
+		} catch {
+			removeTyping();
+			appendMessage(
+				"assistant",
+				"Whoa, lost connection for a sec. Try sending that again!",
+			);
+		} finally {
+			isLoading = false;
+			sendBtn.disabled = false;
+			input.focus();
+		}
+	}
+
+	// ── Input auto-resize ───────────────────────────────────────────────────
+	function autoResize() {
+		input.style.height = "auto";
+		input.style.height = Math.min(input.scrollHeight, 112) + "px";
+	}
+
+	input.addEventListener("input", autoResize);
+
+	input.addEventListener("keydown", (e) => {
+		if (e.key === "Enter" && !e.shiftKey) {
+			e.preventDefault();
+			sendMessage();
+		}
+	});
+
+	sendBtn.addEventListener("click", sendMessage);
+</script>

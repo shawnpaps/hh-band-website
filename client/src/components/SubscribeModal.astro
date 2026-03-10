@@ -3,55 +3,110 @@ interface Props {
 	delay?: number;
 }
 
-const { delay = 3000 } = Astro.props;
+const { delay = 4000 } = Astro.props;
 ---
 
+<!-- Modal backdrop -->
 <div
 	id="subscribe-modal"
-	class="modal pointer-events-none opacity-0 transition-opacity duration-300 z-20"
 	data-delay={delay}
+	class="fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300"
+	aria-modal="true"
 	aria-hidden="true"
+	role="dialog"
+	aria-labelledby="modal-title"
 >
+	<!-- Backdrop -->
 	<div
-		class="modal-box max-w-lg text-center space-y-4 sm:space-y-6 p-4 sm:p-6 mx-4"
+		id="modal-backdrop"
+		class="absolute inset-0 bg-[#080808]/80 backdrop-blur-sm"
 	>
-		<h2 class="text-2xl sm:text-3xl md:text-4xl font-family-sancreek">
+	</div>
+
+	<!-- Panel -->
+	<div
+		class="relative z-10 w-full max-w-md bg-[#111111] border border-white/10 p-8 sm:p-10"
+		role="document"
+	>
+		<!-- Close button -->
+		<button
+			id="modal-close-btn"
+			type="button"
+			aria-label="Close"
+			class="absolute top-4 right-4 p-1 text-white/35 hover:text-[#f0ece4] transition-colors duration-150 cursor-pointer"
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="18"
+				height="18"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="1.5"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				aria-hidden="true"
+			>
+				<line x1="18" y1="6" x2="6" y2="18"></line>
+				<line x1="6" y1="6" x2="18" y2="18"></line>
+			</svg>
+		</button>
+
+		<!-- Rule accent -->
+		<div class="w-8 h-px bg-[#c8922a] mb-6"></div>
+
+		<!-- Headline -->
+		<h2
+			id="modal-title"
+			class="text-4xl sm:text-5xl leading-none tracking-wide text-[#f0ece4] mb-3"
+			style="font-family: 'Bebas Neue', Impact, sans-serif;"
+		>
 			Don't Miss Your Exit
 		</h2>
-		<p class="font-family-chelsea text-sm sm:text-base">
-			Join the text + email list for first dibs on shows, drops, and
-			secret truck-stop sets.
+		<p class="text-sm text-white/50 leading-relaxed mb-8">
+			Join the list for first dibs on shows, drops, and secret truck-stop
+			sets.
 		</p>
-		<form id="modal-subscribe-form" class="space-y-4">
-			<input
-				type="email"
-				id="modal-email-input"
-				name="email"
-				class="input input-bordered w-full bg-transparent text-sm sm:text-base"
-				placeholder="yourname@email.com"
-				required
-			/>
-			<button
-				type="submit"
-				id="modal-subscribe-button"
-				class="btn btn-accent w-full rounded-full text-sm sm:text-base"
-			>
-				<span id="modal-button-text">Get Updates</span>
-				<span
-					id="modal-button-loading"
-					class="loading loading-spinner hidden"></span>
-			</button>
+
+		<!-- Form -->
+		<form id="modal-subscribe-form" novalidate>
+			<div class="flex flex-col gap-3">
+				<input
+					type="email"
+					id="modal-email-input"
+					name="email"
+					placeholder="your@email.com"
+					autocomplete="email"
+					required
+					class="w-full bg-transparent border border-white/20 text-[#f0ece4] text-[0.9375rem] px-4 py-3 outline-none placeholder:text-white/30 focus:border-[#c8922a] transition-colors duration-150 appearance-none"
+				/>
+				<button
+					type="submit"
+					id="modal-subscribe-button"
+					class="w-full inline-flex items-center justify-center gap-2 bg-[#c8922a] text-[#080808] text-[0.75rem] font-semibold tracking-[0.12em] uppercase px-7 py-3 border border-[#c8922a] hover:bg-[#a87520] hover:border-[#a87520] transition-colors duration-150 cursor-pointer disabled:opacity-40 disabled:pointer-events-none"
+				>
+					<span id="modal-button-text">Get Updates</span>
+					<span
+						id="modal-button-loading"
+						class="hidden size-[1.1em] border-2 border-white/20 border-t-[#f0ece4] rounded-full animate-spin"
+					></span>
+				</button>
+			</div>
+
 			<div
 				id="modal-message"
-				class="text-center hidden text-sm font-family-chelsea"
+				class="hidden mt-4 text-sm font-medium tracking-wide"
+				role="alert"
+				aria-live="polite"
 			>
 			</div>
 		</form>
+
+		<!-- Dismiss -->
 		<button
 			type="button"
-			class="btn btn-ghost w-full rounded-full text-sm sm:text-base"
-			data-close-modal
-			data-dismiss-session="true"
+			id="modal-dismiss-btn"
+			class="mt-5 w-full text-xs font-semibold tracking-[0.14em] uppercase text-white/30 hover:text-white/60 transition-colors duration-150 cursor-pointer"
 		>
 			Maybe later
 		</button>
@@ -63,15 +118,20 @@ const { delay = 3000 } = Astro.props;
 		const modal = document.getElementById("subscribe-modal");
 		if (!modal) return;
 
-		const delay = Number(modal.dataset.delay || 3000);
+		const delay = Number(modal.dataset.delay || 4000);
+		const backdrop = document.getElementById("modal-backdrop");
+		const closeBtn = document.getElementById("modal-close-btn");
+		const dismissBtn = document.getElementById("modal-dismiss-btn");
 		const form = document.getElementById("modal-subscribe-form");
 		const emailInput = document.getElementById("modal-email-input");
 		const submitButton = document.getElementById("modal-subscribe-button");
 		const buttonText = document.getElementById("modal-button-text");
 		const buttonLoading = document.getElementById("modal-button-loading");
 		const messageDiv = document.getElementById("modal-message");
+
 		const DISMISS_KEY = "hh-subscribe-dismissed";
-		const sessionStore = (() => {
+
+		const store = (() => {
 			try {
 				return window.sessionStorage;
 			} catch {
@@ -79,124 +139,106 @@ const { delay = 3000 } = Astro.props;
 			}
 		})();
 
-		if (sessionStore?.getItem(DISMISS_KEY) === "true") {
-			return;
-		}
+		if (store?.getItem(DISMISS_KEY) === "true") return;
 
-		let hasOpened = false;
+		let opened = false;
 
-		const openModal = () => {
-			if (hasOpened) return;
-			hasOpened = true;
-			modal.classList.remove("pointer-events-none");
-			modal.classList.add(
-				"modal-open",
-				"pointer-events-auto",
-				"opacity-100",
-			);
+		const open = () => {
+			if (opened) return;
+			opened = true;
+			modal.classList.remove("opacity-0", "pointer-events-none");
+			modal.classList.add("opacity-100", "pointer-events-auto");
 			modal.setAttribute("aria-hidden", "false");
+			document.body.style.overflow = "hidden";
 		};
 
-		const closeModal = (persist = false) => {
-			modal.classList.remove(
-				"modal-open",
-				"pointer-events-auto",
-				"opacity-100",
-			);
-			modal.classList.add("pointer-events-none");
+		const close = (persist = false) => {
+			modal.classList.add("opacity-0", "pointer-events-none");
+			modal.classList.remove("opacity-100", "pointer-events-auto");
 			modal.setAttribute("aria-hidden", "true");
-
-			if (persist) {
-				sessionStore?.setItem(DISMISS_KEY, "true");
-			}
+			document.body.style.overflow = "";
+			if (persist) store?.setItem(DISMISS_KEY, "true");
 		};
 
-		setTimeout(openModal, delay);
+		setTimeout(open, delay);
 
-		modal.addEventListener("click", (event) => {
-			const target = event.target;
-			if (target === modal) {
-				closeModal();
-			} else if (
-				target instanceof HTMLElement &&
-				target.dataset.closeModal !== undefined
-			) {
-				const persist = target.dataset.dismissSession === "true";
-				closeModal(persist);
-			}
+		backdrop?.addEventListener("click", () => close(false));
+		closeBtn?.addEventListener("click", () => close(false));
+		dismissBtn?.addEventListener("click", () => close(true));
+
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Escape") close(false);
 		});
 
-		document.addEventListener("keydown", (event) => {
-			if (event.key === "Escape") {
-				closeModal();
+		form?.addEventListener("submit", async (e) => {
+			e.preventDefault();
+
+			const email = emailInput.value.trim();
+			if (!email) {
+				showMessage("Please enter your email address.", "error");
+				return;
 			}
-		});
 
-		if (form) {
-			form.addEventListener("submit", async (event) => {
-				event.preventDefault();
+			setLoading(true);
+			hideMessage();
 
-				const email = emailInput.value.trim();
+			try {
+				const response = await fetch("/api/subscribe", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ email }),
+				});
 
-				if (!email) {
-					showMessage("Please enter your email address", "error");
-					return;
-				}
+				const data = await response.json();
 
-				// Disable form during submission
-				submitButton.disabled = true;
-				buttonText.classList.add("hidden");
-				buttonLoading.classList.remove("hidden");
-				messageDiv.classList.add("hidden");
-
-				try {
-					const response = await fetch("/api/subscribe", {
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json",
-						},
-						body: JSON.stringify({ email }),
-					});
-
-					const data = await response.json();
-
-					if (response.ok) {
-						showMessage(
-							"🎉 Welcome to the Homesick Highway community!",
-							"success",
-						);
-						form.reset();
-						setTimeout(() => {
-							closeModal(true);
-						}, 2000);
-					} else {
-						showMessage(
-							data.error ||
-								"Something went wrong. Please try again.",
-							"error",
-						);
-					}
-				} catch (error) {
-					console.error("Subscription error:", error);
+				if (response.ok) {
 					showMessage(
-						"Network error. Please check your connection and try again.",
+						"🤘 You're in. Welcome to Homesick Highway.",
+						"success",
+					);
+					form.reset();
+					setTimeout(() => close(true), 2200);
+				} else {
+					showMessage(
+						data.error || "Something went wrong. Please try again.",
 						"error",
 					);
-				} finally {
-					// Re-enable form
-					submitButton.disabled = false;
-					buttonText.classList.remove("hidden");
-					buttonLoading.classList.add("hidden");
 				}
-			});
+			} catch {
+				showMessage(
+					"Network error. Check your connection and try again.",
+					"error",
+				);
+			} finally {
+				setLoading(false);
+			}
+		});
+
+		function setLoading(loading) {
+			submitButton.disabled = loading;
+			if (loading) {
+				buttonText.classList.add("hidden");
+				buttonLoading.classList.remove("hidden");
+			} else {
+				buttonText.classList.remove("hidden");
+				buttonLoading.classList.add("hidden");
+			}
 		}
 
 		function showMessage(message, type) {
 			messageDiv.textContent = message;
-			messageDiv.classList.remove("hidden", "text-success", "text-error");
-			messageDiv.classList.add(
-				type === "success" ? "text-success" : "text-error",
+			messageDiv.classList.remove(
+				"hidden",
+				"text-[#c8922a]",
+				"text-[#f87171]",
 			);
+			messageDiv.classList.add(
+				type === "success" ? "text-[#c8922a]" : "text-[#f87171]",
+			);
+		}
+
+		function hideMessage() {
+			messageDiv.classList.add("hidden");
 		}
 	})();
 </script>

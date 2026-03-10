@@ -1,7 +1,6 @@
 ---
 import Hero from "../components/Hero.astro";
 import RootLayout from "../layouts/RootLayout.astro";
-import MerchPreview from "../components/MerchPreview.astro";
 import NoMerch from "../components/NoMerch.astro";
 ---
 
@@ -11,107 +10,214 @@ import NoMerch from "../components/NoMerch.astro";
 	keywords="Homesick Highway, Tampa rock band, Florida hard rock, country metal band, new rock music 2026, Lucid Vision single, Tampa concerts, Florida metal band, hard rock Florida, southern rock Tampa, new bands Florida, rock music Tampa Bay"
 	image="https://hh-marketing-website.s3.us-east-2.amazonaws.com/lucid-vision/Untitled.png"
 >
+	<!-- ─── Hero ──────────────────────────────────────────────────────────── -->
 	<Hero
-		heroText="Homesick Highway"
+		heroText="Heavy As F**k Southern Rock from Tampa, FL"
 		heroImageUrl="https://hh-marketing-website.s3.us-east-2.amazonaws.com/HH_Promos+(36+of+37).jpg"
+		subText="Tampa, FL — Heavy Southern Rock"
 	/>
-	<section
-		id="music"
-		class="relative min-h-[100vh] flex items-center justify-center overflow-hidden"
-	>
-		<!-- Background Album Art -->
-		<div class="absolute inset-0 z-0">
-			<img
-				src="https://hh-marketing-website.s3.us-east-2.amazonaws.com/lucid-vision/Lucid_2.png"
-				alt="Lucid Vision Album Cover Background"
-				class="w-full h-full object-cover blur-sm scale-110"
-			/>
-			<div
-				class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"
+
+	<!-- ─── Promo Video ──────────────────────────────────────────────────── -->
+	<section class="bg-[#080808] border-b border-white/8">
+		<div class="max-w-7xl mx-auto px-6 lg:px-10 py-24 md:py-32">
+			<p
+				class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-4"
 			>
+				Watch
+			</p>
+			<div class="w-10 h-px bg-[#c8922a] mb-10"></div>
+			<div class="w-full aspect-video border border-white/8">
+				<iframe
+					src="https://player.mux.com/FgF8Jk7XEZIhfSft8KTX8t01tEfyXdPx1uUVZRfyz41g?metadata-video-title=Homesick+Highway%3A+Single+Promo&video-title=Homesick+Highway%3A+Single+Promo"
+					style="width: 100%; height: 100%; border: none;"
+					allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+					allowfullscreen></iframe>
 			</div>
 		</div>
+	</section>
 
-		<!-- Content Container -->
-		<div class="relative z-10 container mx-auto px-4 py-20 md:py-32">
-			<div
-				class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16"
-			>
-				<!-- Album Art - Featured -->
-				<div class="w-full lg:w-1/2 flex justify-center">
-					<div class="relative group">
-						<div
-							class="absolute -inset-4 bg-gradient-to-r from-orange-600 to-amber-600 rounded-lg blur-xl opacity-75 group-hover:opacity-100 transition duration-500"
-						>
-						</div>
-						<img
-							src="https://hh-marketing-website.s3.us-east-2.amazonaws.com/lucid-vision/Lucid_2.png"
-							alt="Lucid Vision Album Cover"
-							class="relative rounded-lg shadow-2xl w-full max-w-md lg:max-w-lg transform group-hover:scale-105 transition duration-500"
-						/>
-					</div>
+	<!-- ─── Countdown Banner ─────────────────────────────────────────────── -->
+	<section class="bg-[#111111] border-y border-white/8 p-5">
+		<div class="max-w-7xl mx-auto px-6 lg:px-10 py-16 md:py-20">
+			<div class="flex flex-col md:flex-row md:items-end gap-8 md:gap-16">
+				<!-- Label + headline -->
+				<div class="flex-1">
+					<p
+						class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-4"
+					>
+						Debut Single
+					</p>
+					<h2
+						class="text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-none tracking-wide text-[#f0ece4]"
+						style="font-family: 'Bebas Neue', Impact, sans-serif;"
+					>
+						Lucid<br /><span class="text-[#c8922a]">Vision</span>
+					</h2>
+					<p
+						class="mt-4 text-sm text-white/45 tracking-widest uppercase"
+					>
+						March 13, 2026
+					</p>
 				</div>
 
-				<!-- Text Content -->
-				<div class="w-full lg:w-1/2 text-center lg:text-left space-y-8">
-					<div class="space-y-4">
+				<!-- Countdown clock -->
+				<div class="flex-shrink-0">
+					<div
+						id="countdown"
+						class="grid grid-cols-4 gap-px bg-white/8 border border-white/8"
+					>
+						{
+							["days", "hours", "minutes", "seconds"].map(
+								(unit) => (
+									<div class="bg-[#080808] px-5 py-6 text-center min-w-[72px]">
+										<span
+											id={unit}
+											class="block text-4xl md:text-5xl leading-none text-[#f0ece4]"
+											style="font-family: 'Bebas Neue', Impact, sans-serif;"
+										>
+											00
+										</span>
+										<span class="block mt-2 text-[10px] font-semibold tracking-[0.18em] uppercase text-white/35">
+											{unit}
+										</span>
+									</div>
+								),
+							)
+						}
+					</div>
+					<div class="mt-6">
+						<a
+							href="#"
+							class="inline-flex items-center justify-center w-full text-[0.75rem] font-semibold tracking-[0.12em] uppercase px-7 py-3 border border-white/30 text-[#f0ece4] opacity-40 cursor-not-allowed pointer-events-none"
+						>
+							Pre-save Coming Soon
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ─── Single Spotlight ─────────────────────────────────────────────── -->
+	<section id="music" class="bg-[#080808]">
+		<div class="max-w-7xl mx-auto px-6 lg:px-10 py-24 md:py-32">
+			<div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+				<!-- Album art -->
+				<div class="relative">
+					<div
+						class="absolute -inset-px bg-gradient-to-br from-[#c8922a]/30 to-transparent pointer-events-none"
+					>
+					</div>
+					<img
+						src="https://hh-marketing-website.s3.us-east-2.amazonaws.com/lucid-vision/Lucid_2.png"
+						alt="Lucid Vision Album Cover"
+						class="w-full aspect-square object-cover"
+					/>
+				</div>
+
+				<!-- Info -->
+				<div class="space-y-8">
+					<div>
 						<p
-							class="text-orange-400 uppercase tracking-[0.3em] text-sm md:text-base font-family-chelsea"
+							class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-4"
 						>
 							New Single
 						</p>
 						<h2
-							class="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold font-family-danfo text-white leading-none"
+							class="text-6xl sm:text-7xl lg:text-8xl leading-none tracking-wide text-[#f0ece4]"
+							style="font-family: 'Bebas Neue', Impact, sans-serif;"
 						>
-							Lucid <span
-								class="italic font-light text-orange-400"
-								>Vision</span
-							>
+							Lucid Vision
 						</h2>
-						<h3
-							class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-family-chelsea text-white/90"
+						<p
+							class="mt-3 text-sm tracking-widest uppercase text-white/40"
 						>
-							03.13.2026
-						</h3>
+							Homesick Highway — 2026
+						</p>
 					</div>
 
-					<p
-						class="text-xl sm:text-2xl md:text-3xl text-white/80 font-light italic font-family-chelsea max-w-2xl mx-auto lg:mx-0"
-					>
-						The Debut Single from Homesick Highway
+					<div class="w-10 h-px bg-[#c8922a]"></div>
+
+					<p class="text-white/65 leading-relaxed text-lg">
+						A high-energy call to shoot your shot and take the risk
+						to live the life you want. Become what you're meant to
+						be.
 					</p>
 
-					<div
-						class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4"
-					>
-						<button
-							class="btn btn-disabled btn-accent btn-lg px-8 font-family-chelsea text-lg hover:scale-105 transition-transform"
+					<div class="flex flex-wrap gap-4 pt-2">
+						<a
+							href="#"
+							class="inline-flex items-center justify-center text-[0.75rem] font-semibold tracking-[0.12em] uppercase px-7 py-3 bg-[#c8922a] text-[#080808] border border-[#c8922a] opacity-40 cursor-not-allowed pointer-events-none"
 						>
-							Presave Link Coming Soon
-						</button>
+							Pre-save Link Coming Soon
+						</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	{/* Store Preview Section */}
-	<section id="store-preview">
-		<div class="p-3 md:p-5">
-			<div class="mb-5 text-center md:text-left">
+	<!-- ─── Merch / Store ────────────────────────────────────────────────── -->
+	<section id="store" class="bg-[#111111] border-t border-white/8">
+		<div class="max-w-7xl mx-auto px-6 lg:px-10 py-24 md:py-32">
+			<div class="mb-12">
+				<p
+					class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-4"
+				>
+					Merch
+				</p>
 				<h2
-					class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold font-family-sancreek"
+					class="text-6xl sm:text-7xl md:text-8xl leading-none tracking-wide text-[#f0ece4]"
+					style="font-family: 'Bebas Neue', Impact, sans-serif;"
 				>
 					From the Truck Stop
 				</h2>
-				<h3
-					class="italic font-light font-family-chelsea text-lg sm:text-xl md:text-2xl mt-2"
-				>
+				<p class="mt-4 text-white/45 text-base">
 					Pick up some merch and get back on the road.
-				</h3>
+				</p>
 			</div>
 			<NoMerch />
-			<!-- <MerchPreview /> -->
 		</div>
 	</section>
 </RootLayout>
+
+<script>
+	const releaseDate = new Date("2026-03-13T00:00:00").getTime();
+
+	const daysEl = document.getElementById("days");
+	const hoursEl = document.getElementById("hours");
+	const minutesEl = document.getElementById("minutes");
+	const secondsEl = document.getElementById("seconds");
+
+	function pad(n: number, digits = 2) {
+		return String(n).padStart(digits, "0");
+	}
+
+	function updateCountdown() {
+		const now = Date.now();
+		const distance = releaseDate - now;
+
+		if (distance <= 0) {
+			const el = document.getElementById("countdown");
+			if (el) {
+				el.innerHTML = `<div class="col-span-4 px-10 py-8 bg-[#080808] text-center text-4xl tracking-widest text-[#c8922a]" style="font-family:'Bebas Neue',Impact,sans-serif;">Out Now</div>`;
+			}
+			return;
+		}
+
+		const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+		const h = Math.floor(
+			(distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+		);
+		const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+		if (daysEl) daysEl.textContent = pad(d, 3);
+		if (hoursEl) hoursEl.textContent = pad(h);
+		if (minutesEl) minutesEl.textContent = pad(m);
+		if (secondsEl) secondsEl.textContent = pad(s);
+	}
+
+	setInterval(updateCountdown, 1000);
+	updateCountdown();
+</script>
