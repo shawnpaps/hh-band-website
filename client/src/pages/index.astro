@@ -6,7 +6,7 @@ import NoMerch from "../components/NoMerch.astro";
 
 <RootLayout
 	title="Homesick Highway - Tampa Florida Hard Rock Country Metal Band | New Music 2026"
-	description="Homesick Highway is Tampa's premier hard rock band fusing country and metal. Debut single 'Lucid Vision' drops March 13, 2026. Experience Florida's most exciting new rock band with electrifying live shows and genre-bending sound."
+	description="Homesick Highway is Tampa's premier hard rock band fusing country and metal. Debut single 'Lucid Vision' out now. Experience Florida's most exciting new rock band with electrifying live shows and genre-bending sound."
 	keywords="Homesick Highway, Tampa rock band, Florida hard rock, country metal band, new rock music 2026, Lucid Vision single, Tampa concerts, Florida metal band, hard rock Florida, southern rock Tampa, new bands Florida, rock music Tampa Bay"
 	image="https://hh-marketing-website.s3.us-east-2.amazonaws.com/lucid-vision/Untitled.png"
 >
@@ -36,8 +36,8 @@ import NoMerch from "../components/NoMerch.astro";
 		</div>
 	</section>
 
-	<!-- ─── Countdown Banner ─────────────────────────────────────────────── -->
-	<section class="bg-[#111111] border-y border-white/8 p-5">
+	<!-- ─── Out Now Banner ───────────────────────────────────────────────── -->
+	<section class="bg-[#111111] border-y border-white/8">
 		<div class="max-w-7xl mx-auto px-6 lg:px-10 py-16 md:py-20">
 			<div class="flex flex-col md:flex-row md:items-end gap-8 md:gap-16">
 				<!-- Label + headline -->
@@ -56,43 +56,58 @@ import NoMerch from "../components/NoMerch.astro";
 					<p
 						class="mt-4 text-sm text-white/45 tracking-widest uppercase"
 					>
-						March 13, 2026
+						Out Now
 					</p>
 				</div>
 
-				<!-- Countdown clock -->
-				<div class="flex-shrink-0">
-					<div
-						id="countdown"
-						class="grid grid-cols-4 gap-px bg-white/8 border border-white/8"
+				<!-- Streaming links -->
+				<div class="flex-shrink-0 flex flex-col gap-3">
+					<a
+						href="https://music.apple.com/us/album/lucid-vision/1881335715?i=1881335722"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="inline-flex items-center gap-3 px-7 py-4 bg-[#080808] border border-white/15 hover:border-[#c8922a]/60 hover:bg-white/4 transition-all duration-150 group"
 					>
-						{
-							["days", "hours", "minutes", "seconds"].map(
-								(unit) => (
-									<div class="bg-[#080808] px-5 py-6 text-center min-w-[72px]">
-										<span
-											id={unit}
-											class="block text-4xl md:text-5xl leading-none text-[#f0ece4]"
-											style="font-family: 'Bebas Neue', Impact, sans-serif;"
-										>
-											00
-										</span>
-										<span class="block mt-2 text-[10px] font-semibold tracking-[0.18em] uppercase text-white/35">
-											{unit}
-										</span>
-									</div>
-								),
-							)
-						}
-					</div>
-					<div class="mt-6">
-						<a
-							href="#"
-							class="inline-flex items-center justify-center w-full text-[0.75rem] font-semibold tracking-[0.12em] uppercase px-7 py-3 border border-white/30 text-[#f0ece4] opacity-40 cursor-not-allowed pointer-events-none"
+						<!-- Apple Music icon -->
+						<svg
+							class="w-5 h-5 flex-shrink-0 text-white/60 group-hover:text-[#c8922a] transition-colors duration-150"
+							viewBox="0 0 24 24"
+							fill="currentColor"
+							xmlns="http://www.w3.org/2000/svg"
 						>
-							Pre-save Coming Soon
-						</a>
-					</div>
+							<path
+								d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 00-1.877-.726 10.496 10.496 0 00-1.564-.15c-.04-.003-.083-.01-.124-.013H5.986c-.152.01-.303.017-.455.026C4.786.07 4.043.15 3.34.428 2.004.958 1.04 1.88.475 3.208A5.494 5.494 0 00.09 4.8a73.49 73.49 0 00-.089 1.19v12.02c.01.161.017.322.027.483.049.766.163 1.52.46 2.238.43 1.02 1.168 1.82 2.15 2.372.626.353 1.3.553 2.007.644.49.065.988.091 1.48.092h12.02c.49-.001.983-.027 1.472-.092.702-.091 1.37-.291 1.993-.644.985-.554 1.726-1.356 2.154-2.375.296-.718.41-1.47.46-2.235.01-.163.017-.326.027-.489V7.332c-.003-.403-.01-.806-.057-1.208zm-6.423 5.99l-4.507 2.818a.935.935 0 01-.492.14.957.957 0 01-.943-.958V8.673a.958.958 0 011.435-.831l4.507 2.818a.958.958 0 010 1.454z"
+							></path>
+						</svg>
+						<span
+							class="text-[0.8125rem] font-semibold tracking-[0.1em] uppercase text-[#f0ece4]"
+						>
+							Apple Music
+						</span>
+					</a>
+					<a
+						href="https://open.spotify.com/track/61W8lJuUnQeOjwrgHzWT09?si=e9105af723524d95"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="inline-flex items-center gap-3 px-7 py-4 bg-[#080808] border border-white/15 hover:border-[#c8922a]/60 hover:bg-white/4 transition-all duration-150 group"
+					>
+						<!-- Spotify icon -->
+						<svg
+							class="w-5 h-5 flex-shrink-0 text-white/60 group-hover:text-[#c8922a] transition-colors duration-150"
+							viewBox="0 0 24 24"
+							fill="currentColor"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"
+							></path>
+						</svg>
+						<span
+							class="text-[0.8125rem] font-semibold tracking-[0.1em] uppercase text-[#f0ece4]"
+						>
+							Spotify
+						</span>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -121,7 +136,7 @@ import NoMerch from "../components/NoMerch.astro";
 						<p
 							class="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-[#c8922a] mb-4"
 						>
-							New Single
+							Debut Single — Out Now
 						</p>
 						<h2
 							class="text-6xl sm:text-7xl lg:text-8xl leading-none tracking-wide text-[#f0ece4]"
@@ -146,10 +161,20 @@ import NoMerch from "../components/NoMerch.astro";
 
 					<div class="flex flex-wrap gap-4 pt-2">
 						<a
-							href="#"
-							class="inline-flex items-center justify-center text-[0.75rem] font-semibold tracking-[0.12em] uppercase px-7 py-3 bg-[#c8922a] text-[#080808] border border-[#c8922a] opacity-40 cursor-not-allowed pointer-events-none"
+							href="https://music.apple.com/us/album/lucid-vision/1881335715?i=1881335722"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex items-center justify-center gap-2 text-[0.75rem] font-semibold tracking-[0.12em] uppercase px-7 py-3 bg-[#c8922a] text-[#080808] border border-[#c8922a] hover:bg-[#a87520] hover:border-[#a87520] transition-colors duration-150"
 						>
-							Pre-save Link Coming Soon
+							Apple Music
+						</a>
+						<a
+							href="https://open.spotify.com/track/61W8lJuUnQeOjwrgHzWT09?si=e9105af723524d95"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex items-center justify-center gap-2 text-[0.75rem] font-semibold tracking-[0.12em] uppercase px-7 py-3 bg-transparent text-[#f0ece4] border border-white/30 hover:bg-white/6 hover:border-white/55 transition-colors duration-150"
+						>
+							Spotify
 						</a>
 					</div>
 				</div>
@@ -180,44 +205,3 @@ import NoMerch from "../components/NoMerch.astro";
 		</div>
 	</section>
 </RootLayout>
-
-<script>
-	const releaseDate = new Date("2026-03-13T00:00:00").getTime();
-
-	const daysEl = document.getElementById("days");
-	const hoursEl = document.getElementById("hours");
-	const minutesEl = document.getElementById("minutes");
-	const secondsEl = document.getElementById("seconds");
-
-	function pad(n: number, digits = 2) {
-		return String(n).padStart(digits, "0");
-	}
-
-	function updateCountdown() {
-		const now = Date.now();
-		const distance = releaseDate - now;
-
-		if (distance <= 0) {
-			const el = document.getElementById("countdown");
-			if (el) {
-				el.innerHTML = `<div class="col-span-4 px-10 py-8 bg-[#080808] text-center text-4xl tracking-widest text-[#c8922a]" style="font-family:'Bebas Neue',Impact,sans-serif;">Out Now</div>`;
-			}
-			return;
-		}
-
-		const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-		const h = Math.floor(
-			(distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-		);
-		const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-		const s = Math.floor((distance % (1000 * 60)) / 1000);
-
-		if (daysEl) daysEl.textContent = pad(d, 3);
-		if (hoursEl) hoursEl.textContent = pad(h);
-		if (minutesEl) minutesEl.textContent = pad(m);
-		if (secondsEl) secondsEl.textContent = pad(s);
-	}
-
-	setInterval(updateCountdown, 1000);
-	updateCountdown();
-</script>
